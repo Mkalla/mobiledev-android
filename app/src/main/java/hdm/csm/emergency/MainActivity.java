@@ -3,6 +3,7 @@ package hdm.csm.emergency;
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -62,8 +63,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     case 1:
                         break;
                     case 2:
+                        Intent intent2 = new Intent(MainActivity.this, GTCActivity.class);
+                        startActivity(intent2);
                         break;
                     case 3:
+                        Intent intent3 = new Intent(MainActivity.this, FAQActivity.class);
+                        startActivity(intent3);
                         break;
                     case 4:
                         Intent intent4 = new Intent(MainActivity.this, RegisterActivity.class);
