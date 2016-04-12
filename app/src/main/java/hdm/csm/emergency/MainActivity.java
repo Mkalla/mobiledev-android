@@ -77,12 +77,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     case 2:
                         break;
                     case 3:
-                        Intent intent3 = new Intent(MainActivity.this, FAQActivity.class);
-                        startActivity(intent3);
                         break;
                     case 4:
-                        Intent intent4 = new Intent(MainActivity.this, RegisterActivity.class);
-                        startActivityForResult(intent4, 1);
+                        startActivity(new Intent(MainActivity.this, FAQActivity.class));
                         break;
                     case 5:
                         break;
@@ -198,9 +195,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.termsAndConditions:
-                Intent intent2 = new Intent(MainActivity.this, GTCActivity.class);
-                startActivity(intent2);
+            case R.id.optionsButton_termsAndConditions:
+                startActivity(new Intent(MainActivity.this, GTCActivity.class));
+                break;
+            case R.id.optionsButton_userdata:
+                startActivityForResult(new Intent(MainActivity.this, RegisterActivity.class), 1);
                 break;
             default:
                 break;

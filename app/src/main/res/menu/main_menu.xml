@@ -2,7 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/termsAndConditions"
+        android:id="@+id/optionsButton_userdata"
+        android:title="Change User Data"
+        app:showAsAction="never"
+        android:orderInCategory="100"/>
+    <item
+        android:id="@+id/optionsButton_termsAndConditions"
         android:title="@string/title_activity_gtc"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:orderInCategory="200"/>
 </menu>

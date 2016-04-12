@@ -11,7 +11,6 @@
         <item>Reports in Progress</item>
         <item>Past Reports</item>
         <item>FAQs</item>
-        <item>Sign in / Register Account</item>
     </string-array>
     <string name="title_activity_login">Log In</string>
 
