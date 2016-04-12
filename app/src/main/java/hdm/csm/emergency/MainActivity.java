@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -73,8 +75,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     case 1:
                         break;
                     case 2:
-                        Intent intent2 = new Intent(MainActivity.this, GTCActivity.class);
-                        startActivity(intent2);
                         break;
                     case 3:
                         Intent intent3 = new Intent(MainActivity.this, FAQActivity.class);
@@ -91,9 +91,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 }
             }
         });
-
-
-
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -163,10 +160,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onConnected(Bundle bundle) {
         Location location = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
-        latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
         updateGeoLocation(location);
 
+        latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(5000); //5 seconds
@@ -189,14 +185,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onLocationChanged(Location location) {
         updateGeoLocation(location);
+    }
 
-        //remove previous current location marker and add new one at current position
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()){
+            case R.id.termsAndConditions:
+                Intent intent2 = new Intent(MainActivity.this, GTCActivity.class);
+                startActivity(intent2);
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void updateGeoLocation(Location location) {
-
         if (location != null) {
             latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
@@ -217,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                 // Fetch the address lines using getAddressLine,
                 // join them, and send them to the thread.
-                
+
                 ArrayList<String> addressFragments = new ArrayList<String>();
                 for(int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                     addressFragments.add(address.getAddressLine(i));
@@ -225,7 +238,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                 textViewCurrentLocation.setText(TextUtils.join(System.getProperty("line.separator"),
                         addressFragments));
-
             }
         }
     }
