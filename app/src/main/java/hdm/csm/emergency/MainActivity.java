@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         startActivityForResult(intent4, 1);
                         break;
                     case 5:
-                        Intent intent5 = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivityForResult(intent5, 1);
                         break;
                     default:
                         break;
