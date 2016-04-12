@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -24,12 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
-            android:label="@string/title_activity_register"/>
-        <activity android:name=".FAQActivity"
-            android:label="@string/title_activity_faq"/>
-        <activity android:name=".GTCActivity"
-            android:label="@string/title_activity_gtc"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register" />
+        <activity
+            android:name=".FAQActivity"
+            android:label="@string/title_activity_faq" />
+        <activity
+            android:name=".GTCActivity"
+            android:label="@string/title_activity_gtc" />
+        <activity android:name=".CreateReportActivity"></activity>
     </application>
 
 </manifest>

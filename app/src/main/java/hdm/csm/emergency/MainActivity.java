@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
+                        startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
                         break;
                     case 1:
                         break;
