@@ -2,10 +2,14 @@ package hdm.csm.emergency;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,6 +28,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
         OnMapReadyCallback  {
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     TextView textViewName;
 
     User myUser;
+    Geocoder geocoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+        //Geocoder
+        geocoder = new Geocoder(this, Locale.getDefault());
     }
 
     @Override
@@ -147,22 +161,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(Bundle bundle) {
-        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+        Location location = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
-        if (mLastLocation != null) {
-            latLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-            textViewCurrentLocation.setText("Latitude: " + latLng.latitude + " , Longitude: " + latLng.longitude);
+        latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-            //place marker at current position
-//            mGoogleMap.clear();
-//            MarkerOptions markerOptions = new MarkerOptions();
-//            markerOptions.position(latLng);
-//            markerOptions.title("Current Position");
-//            mCurrLocation = mGoogleMap.addMarker(markerOptions);
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+        updateGeoLocation(location);
 
-        }
-
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(5000); //5 seconds
         mLocationRequest.setFastestInterval(3000); //3 seconds
@@ -183,18 +188,45 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onLocationChanged(Location location) {
+        updateGeoLocation(location);
 
         //remove previous current location marker and add new one at current position
 
-        latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        textViewCurrentLocation.setText("Latitude: " + latLng.latitude + " , Longitude: " + latLng.longitude);
 
-//        if (mCurrLocation != null) {
-//            mCurrLocation.remove();
-//        }
-//        MarkerOptions markerOptions = new MarkerOptions();
-//        markerOptions.position(latLng);
-//        markerOptions.title("Current Position");
-//        mCurrLocation = mGoogleMap.addMarker(markerOptions);
+    }
+
+    private void updateGeoLocation(Location location) {
+
+        if (location != null) {
+            latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+            List<Address> addresses = null;
+
+            try {
+                addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            } catch (IOException ioException) {
+                // Catch network or other I/O problems.
+                Log.i("Geocoder", "Geocoding failed");
+            }
+
+            // Handle case where no address was found.
+            if (addresses == null || addresses.size()  == 0) {
+                Log.i("Geocoder", "Adress not found");
+            } else {
+                Address address = addresses.get(0);
+
+                // Fetch the address lines using getAddressLine,
+                // join them, and send them to the thread.
+                
+                ArrayList<String> addressFragments = new ArrayList<String>();
+                for(int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                    addressFragments.add(address.getAddressLine(i));
+                }
+
+                textViewCurrentLocation.setText(TextUtils.join(System.getProperty("line.separator"),
+                        addressFragments));
+
+            }
+        }
     }
 }
