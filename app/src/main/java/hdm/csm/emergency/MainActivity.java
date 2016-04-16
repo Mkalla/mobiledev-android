@@ -1,6 +1,8 @@
 package hdm.csm.emergency;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -18,6 +20,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -30,7 +38,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+import org.json.JSONArray;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -53,6 +64,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     User myUser;
     Geocoder geocoder;
 
+    double latitude;
+    double longitude;
+
+    weatherLocation standpoint;
+    String siteList;
+    String closest;
+    String baseUrl;
+    String qry;
+    String key;
+    String reqUrl;
+    String forecastReq;
+    String forecastResp;
+    weatherLocation weatherLoc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         textViewName = (TextView) findViewById(R.id.textView_Name);
 
         myUser = User.getInstance(getApplicationContext());
-
 
         listMenu = (ListView) findViewById(R.id.listMenu);
         listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -83,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         startActivity(new Intent(MainActivity.this, FAQActivity.class));
                         break;
                     case 5:
+                        startActivity(new Intent(MainActivity.this, WeatherActivity.class));
+                        break;
+                    case 6:
                         break;
                     default:
                         break;
@@ -160,7 +187,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 mGoogleApiClient);
         updateGeoLocation(location);
 
-        latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+
+        latLng = new LatLng(latitude, longitude);
+        standpoint = new weatherLocation(0, "Your location", latitude, longitude, MainActivity.this);
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(5000); //5 seconds
@@ -211,7 +242,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     private void updateGeoLocation(Location location) {
         if (location != null) {
-            latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            latLng = new LatLng(latitude, longitude);
 
             List<Address> addresses = null;
 
@@ -240,5 +273,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         addressFragments));
             }
         }
+    }
+
+    public void getWeather(){
+        // Instantiate the RequestQueue.
+        RequestQueue weatherQueue = Volley.newRequestQueue(this);
+
+        baseUrl = "http://datapoint.metoffice.gov.uk/public/data/val/wxobs/all/json/";
+        qry = "3134?res=hourly";
+        key = "&key=3dd3210c-9aff-4547-9c28-9b590cc7d2c9";
+        reqUrl = baseUrl + qry + key;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, reqUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        forecastResp = response;
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+
+        weatherQueue.add(stringRequest);
     }
 }

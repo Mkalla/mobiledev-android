@@ -49,6 +49,22 @@
         android:entries="@array/menu_array">
     </ListView>
 
+    <TextView
+        android:id="@+id/JSON"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/listMenu"/>
+    <TextView
+        android:id="@+id/forecastJSON"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/JSON" />
+    <TextView
+        android:id="@+id/LocationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/forecastJSON"/>
+
     <!--<LinearLayout-->
         <!--android:layout_below="@+id/map"-->
         <!--android:layout_width="match_parent"-->

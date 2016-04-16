@@ -3,8 +3,11 @@
     package="hdm.csm.emergency">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
@@ -35,7 +38,10 @@
         <activity
             android:name=".GTCActivity"
             android:label="@string/title_activity_gtc" />
-        <activity android:name=".CreateReportActivity"></activity>
+        <activity android:name=".CreateReportActivity" />
+        <activity
+            android:name=".WeatherActivity"
+            android:label="Weather"></activity>
     </application>
 
 </manifest>
