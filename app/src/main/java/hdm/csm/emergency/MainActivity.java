@@ -1,8 +1,6 @@
 package hdm.csm.emergency;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -36,12 +34,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -55,11 +53,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     LatLng latLng;
     GoogleMap mGoogleMap;
-    Marker mCurrLocation;
 
     ListView listMenu;
     TextView textViewCurrentLocation;
     TextView textViewName;
+    TextView textViewWeatherType;
+    TextView textViewTemperature;
 
     User myUser;
     Geocoder geocoder;
@@ -67,16 +66,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     double latitude;
     double longitude;
 
-    weatherLocation standpoint;
-    String siteList;
-    String closest;
     String baseUrl;
     String qry;
     String key;
     String reqUrl;
-    String forecastReq;
-    String forecastResp;
-    weatherLocation weatherLoc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         textViewCurrentLocation = (TextView) findViewById(R.id.textView_CurrentLocation);
         textViewName = (TextView) findViewById(R.id.textView_Name);
+
+        textViewWeatherType = (TextView)findViewById(R.id.weatherTypeTextView);
+        textViewTemperature = (TextView)findViewById(R.id.weatherTempTextView);
 
         myUser = User.getInstance(getApplicationContext());
 
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         startActivity(new Intent(MainActivity.this, FAQActivity.class));
                         break;
                     case 5:
-                        startActivity(new Intent(MainActivity.this, WeatherActivity.class));
+//                        startActivity(new Intent(MainActivity.this, WeatherActivity.class));
                         break;
                     case 6:
                         break;
@@ -187,11 +184,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 mGoogleApiClient);
         updateGeoLocation(location);
 
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-
-        latLng = new LatLng(latitude, longitude);
-        standpoint = new weatherLocation(0, "Your location", latitude, longitude, MainActivity.this);
+        latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(5000); //5 seconds
@@ -199,6 +192,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+
+        getWeatherForLatLng(latLng.latitude, latLng.longitude);
     }
 
     @Override
@@ -275,22 +270,57 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 
-    public void getWeather(){
+    public void getWeatherForLatLng(double lat, double lng){
         // Instantiate the RequestQueue.
         RequestQueue weatherQueue = Volley.newRequestQueue(this);
 
-        baseUrl = "http://datapoint.metoffice.gov.uk/public/data/val/wxobs/all/json/";
-        qry = "3134?res=hourly";
-        key = "&key=3dd3210c-9aff-4547-9c28-9b590cc7d2c9";
-        reqUrl = baseUrl + qry + key;
+//        reqUrl = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=3dd3210c-9aff-4547-9c28-9b590cc7d2c9";
+
+        baseUrl = "http://api.openweathermap.org";
+        qry = "/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=";
+        key = "24e194e4e62a3017b24f378910d19827";
+        reqUrl= baseUrl + qry + key;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, reqUrl,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        forecastResp = response;
+
+                        Log.i("Extracted Json Data", "Trying...");
+                        String data = "";
+
+                        try {
+                            JSONObject jsonRootObject = new JSONObject(response);
+
+                            String temperature = jsonRootObject.getJSONObject("main").getString("temp") + " °C";
+                            textViewTemperature.setText(temperature);
+
+                            JSONArray jsonWeatherArray = jsonRootObject.getJSONArray("weather");
+//
+//                           //Iterate the jsonArray
+//                            for(int i=0; i < jsonWeatherArray.length(); i++){
+                            String weatherType = jsonWeatherArray.getJSONObject(0).getString("description"); //NOTE: Don't know why it is an array. Getting the first element in array should be ok
+                            textViewWeatherType.setText(weatherType);
+
+//                            }
+
+//                            JSONObject jsonLocationsObject = jsonRootObject.getJSONObject("Locations");
+//                            JSONArray jsonLocationsArray = jsonLocationsObject.getJSONArray("Location");//
+//
+//                            //Iterate the jsonArray and print the info of JSONObjects
+//                            for(int i=0; i < jsonLocationsArray.length(); i++){
+//                                JSONObject jsonObject = jsonLocationsArray.getJSONObject(i);
+//
+//                                data += jsonObject.getString("name") + ", ";
+//                            }
+//
+                            Log.i("ExtractedJsonData", data);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.i("Extracted Json Data", "Failed!");
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

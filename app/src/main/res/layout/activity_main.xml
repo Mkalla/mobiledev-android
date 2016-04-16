@@ -25,6 +25,24 @@
         android:layout_height="wrap_content"
         android:text="Current Location"
         android:textSize="16dp"/>
+
+    <!--<ImageView-->
+    <!--android:id="@+id/weatherIconImageView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@+id/weatherTypeTextView"/>-->
+    <TextView
+        android:id="@+id/weatherTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_CurrentLocation"
+        android:text="Weather Type"/>
+    <TextView
+        android:id="@+id/weatherTempTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperature"
+        android:layout_below="@id/weatherTypeTextView"/>
     <!--<Button-->
         <!--android:id="@+id/buttonEmergencyReactionGuide"-->
         <!--android:layout_below="@id/map"-->
@@ -49,21 +67,6 @@
         android:entries="@array/menu_array">
     </ListView>
 
-    <TextView
-        android:id="@+id/JSON"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/listMenu"/>
-    <TextView
-        android:id="@+id/forecastJSON"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/JSON" />
-    <TextView
-        android:id="@+id/LocationTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/forecastJSON"/>
 
     <!--<LinearLayout-->
         <!--android:layout_below="@+id/map"-->
