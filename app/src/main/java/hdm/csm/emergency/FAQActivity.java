@@ -22,6 +22,6 @@ public class FAQActivity extends AppCompatActivity {
                 return true;
             }
         });
-        myWebView.loadUrl("http://www.google.de");
+        myWebView.loadUrl("http://www.lipsum.com");
     }
 }

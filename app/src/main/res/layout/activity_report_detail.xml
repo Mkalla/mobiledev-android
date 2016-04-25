@@ -7,23 +7,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".CreateReportActivity"
+    tools:context=".ReportDetailActivity"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button_takePicture"
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take Picture" />
+        android:id="@+id/list"></ListView>
 
-    <ImageView
-        android:layout_below="@id/button_takePicture"
-        android:id="@+id/myImageView"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:text="Report Name"/>
 
     <HorizontalScrollView
-        android:layout_below="@+id/button_takePicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageScrollView">
@@ -37,24 +35,4 @@
         </LinearLayout>
 
     </HorizontalScrollView>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/et_roadReportComment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Add a comment"
-            android:singleLine="false" />
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/button_createReport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Report" />
-
 </LinearLayout>

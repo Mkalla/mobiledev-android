@@ -6,6 +6,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -46,7 +47,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
-        OnMapReadyCallback {
+        OnMapReadyCallback, View.OnClickListener {
 
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     TextView textViewName;
     TextView textViewWeatherType;
     TextView textViewTemperature;
+    FloatingActionButton fab;
 
     User myUser;
     Geocoder geocoder;
@@ -71,11 +73,30 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     String key;
     String reqUrl;
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myUser = User.getInstance(getApplicationContext());
+
+        //redirect to user registration if no user data
+        if(myUser.getForename() == null || myUser.getSurname() == null) {
+            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+        }
+
+
 
         textViewCurrentLocation = (TextView) findViewById(R.id.textView_CurrentLocation);
         textViewName = (TextView) findViewById(R.id.textView_Name);
@@ -83,7 +104,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         textViewWeatherType = (TextView) findViewById(R.id.weatherTypeTextView);
         textViewTemperature = (TextView) findViewById(R.id.weatherTempTextView);
 
-        myUser = User.getInstance(getApplicationContext());
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(this);
+
 
         listMenu = (ListView) findViewById(R.id.listMenu);
         listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -92,13 +115,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
                         break;
                     case 1:
                         break;
                     case 2:
                         break;
                     case 3:
+                        startActivity(new Intent(MainActivity.this, PastReportsActivity.class));
                         break;
                     case 4:
                         startActivity(new Intent(MainActivity.this, FAQActivity.class));

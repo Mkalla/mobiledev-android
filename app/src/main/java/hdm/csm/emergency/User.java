@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class User {
     private String title;
     private String forename;
@@ -19,6 +21,8 @@ public class User {
     private String email;
     private String tel;
     private String mobile;
+
+    private ArrayList<String> paths = new ArrayList<>();
 
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor prefsEditor;
@@ -152,5 +156,17 @@ public class User {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public ArrayList<String> getPaths() {
+        return paths;
+    }
+
+    public void setPaths(ArrayList<String> paths) {
+        this.paths = paths;
+    }
+
+    public void addPath(String path){
+        this.paths.add(path);
     }
 }

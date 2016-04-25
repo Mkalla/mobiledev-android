@@ -1,5 +1,6 @@
 package hdm.csm.emergency;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CreateReportActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,14 +28,25 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
 
     ImageView myImageView;
     Button takePictureButton;
+    Button createReportButton;
     LinearLayout imageContainer;
 
     Uri mImageURI;
 
+    Report report;
+
+    ArrayList<String> roadReportImageURIs = new ArrayList<String>();
+
+    EditText etRoadReportComment;
+
+    DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dataManager = DataManager.getInstance(getApplicationContext());
+
         setContentView(R.layout.activity_create_report);
 
         myImageView = (ImageView) findViewById(R.id.myImageView);
@@ -40,7 +54,12 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
         takePictureButton = (Button) findViewById(R.id.button_takePicture);
         takePictureButton.setOnClickListener(this);
 
+        createReportButton = (Button) findViewById(R.id.button_createReport);
+        createReportButton.setOnClickListener(this);
+
         imageContainer = (LinearLayout) findViewById(R.id.imageContainer);
+
+        etRoadReportComment = (EditText)findViewById(R.id.et_roadReportComment);
     }
 
     @Override
@@ -48,7 +67,6 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
 
         switch (v.getId()) {
             case R.id.button_takePicture:
-                Toast.makeText(this, "Take picture clicked", Toast.LENGTH_SHORT).show();
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // Ensure that there's a camera activity to handle the intent
@@ -70,6 +88,12 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
                         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                     }
                 }
+                break;
+            case R.id.button_createReport:
+                Toast.makeText(this, "Report created", Toast.LENGTH_SHORT).show();
+                createReport();
+                setResult(Activity.RESULT_OK);
+                finish();
                 break;
             default:
                 break;
@@ -96,6 +120,7 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
                 tempImageView.setImageBitmap(imageBitmap);
 
                 imageContainer.addView(tempImageView);
+                roadReportImageURIs.add(mImageURI.toString());
             }
         }
     }
@@ -112,9 +137,17 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-
-//        // Save a file: path for use with ACTION_VIEW intents
-//        mCurrentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+
+    private void createReport(){
+        report = new Report();
+        report.setRoadReportImageURIs(this.roadReportImageURIs);
+        report.setRoadReportComment(etRoadReportComment.getText().toString());
+
+
+        //Createfile and save
+        String filename = "report_" + System.currentTimeMillis();
+        dataManager.saveReport(filename, report);
     }
 }

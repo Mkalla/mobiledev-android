@@ -43,7 +43,9 @@
         <activity android:name=".CreateReportActivity" />
         <activity
             android:name=".WeatherActivity"
-            android:label="Weather"></activity>
+            android:label="Weather" />
+        <activity android:name=".PastReportsActivity" />
+        <activity android:name=".ReportDetailActivity"></activity>
     </application>
 
 </manifest>
