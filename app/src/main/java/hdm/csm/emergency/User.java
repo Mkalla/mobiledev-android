@@ -35,8 +35,7 @@ public class User {
     public static User getInstance(Context context) {
 
         //Check if there is a user instance
-        if (instance == null)
-        {
+        if (instance == null) {
             //If not: check if there is a user saved in shared pref
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             prefsEditor = sharedPreferences.edit();
@@ -52,7 +51,7 @@ public class User {
         return instance;
     }
 
-    public void saveInstance(){
+    public void saveInstance() {
         String json = gson.toJson(instance);
         prefsEditor.putString("myUser", json);
         prefsEditor.commit();

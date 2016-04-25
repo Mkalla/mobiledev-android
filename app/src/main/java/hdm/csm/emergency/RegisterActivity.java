@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button registerButton;
     User myUser;
@@ -33,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText etEmail;
     EditText etTel;
     EditText etMobile;
-
 
 
     @Override
@@ -62,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         myUser = User.getInstance(getApplicationContext());
 
         //Set EditTexts if user exists
-        if(myUser != null){
+        if (myUser != null) {
             etTitle.setText(myUser.getTitle());
             etForename.setText(myUser.getForename());
             etMiddlenames.setText(myUser.getMiddlenames());
@@ -76,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             etTel.setText(myUser.getTel());
             etMobile.setText(myUser.getMobile());
 
-            Toast.makeText(this,"User loaded",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User loaded", Toast.LENGTH_SHORT).show();
         }
 
         datePickerDialog = new DatePickerDialog.OnDateSetListener() {

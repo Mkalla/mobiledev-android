@@ -14,7 +14,7 @@ public class FAQActivity extends AppCompatActivity {
         setContentView(R.layout.activity_faq);
 
 
-        myWebView = (WebView)findViewById(R.id.webView);
+        myWebView = (WebView) findViewById(R.id.webView);
         myWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

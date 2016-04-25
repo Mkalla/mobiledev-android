@@ -46,7 +46,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
-        OnMapReadyCallback  {
+        OnMapReadyCallback {
 
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
@@ -80,17 +80,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         textViewCurrentLocation = (TextView) findViewById(R.id.textView_CurrentLocation);
         textViewName = (TextView) findViewById(R.id.textView_Name);
 
-        textViewWeatherType = (TextView)findViewById(R.id.weatherTypeTextView);
-        textViewTemperature = (TextView)findViewById(R.id.weatherTempTextView);
+        textViewWeatherType = (TextView) findViewById(R.id.weatherTypeTextView);
+        textViewTemperature = (TextView) findViewById(R.id.weatherTempTextView);
 
         myUser = User.getInstance(getApplicationContext());
 
         listMenu = (ListView) findViewById(R.id.listMenu);
-        listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
                         break;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     protected void onStart() {
         super.onStart();
 
-        if(myUser!=null){
+        if (myUser != null) {
             textViewName.setText(myUser.getForename() + " " + myUser.getSurname());
         }
     }
@@ -138,11 +138,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1) {
-            if(resultCode == Activity.RESULT_OK){
-                Toast.makeText(this,"registered",Toast.LENGTH_SHORT).show();
+            if (resultCode == Activity.RESULT_OK) {
+                Toast.makeText(this, "registered", Toast.LENGTH_SHORT).show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(this,"registration failed ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "registration failed ", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     protected synchronized void buildGoogleApiClient() {
-        Toast.makeText(this,"buildGoogleApiClient",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -198,12 +198,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnectionSuspended(int i) {
-        Toast.makeText(this,"onConnectionSuspended",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "onConnectionSuspended", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Toast.makeText(this,"onConnectionFailed",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "onConnectionFailed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.optionsButton_termsAndConditions:
                 startActivity(new Intent(MainActivity.this, GTCActivity.class));
                 break;
@@ -251,8 +251,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
 
             // Handle case where no address was found.
-            if (addresses == null || addresses.size()  == 0) {
-                Log.i("Geocoder", "Adress not found");
+            if (addresses == null || addresses.size() == 0) {
+                Log.i("Geocoder", "Address not found");
             } else {
                 Address address = addresses.get(0);
 
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 // join them, and send them to the thread.
 
                 ArrayList<String> addressFragments = new ArrayList<String>();
-                for(int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                     addressFragments.add(address.getAddressLine(i));
                 }
 
@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 
-    public void getWeatherForLatLng(double lat, double lng){
+    public void getWeatherForLatLng(double lat, double lng) {
         // Instantiate the RequestQueue.
         RequestQueue weatherQueue = Volley.newRequestQueue(this);
 
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         baseUrl = "http://api.openweathermap.org";
         qry = "/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=";
         key = "24e194e4e62a3017b24f378910d19827";
-        reqUrl= baseUrl + qry + key;
+        reqUrl = baseUrl + qry + key;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, reqUrl,

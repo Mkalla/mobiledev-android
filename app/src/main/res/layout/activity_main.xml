@@ -4,27 +4,27 @@
     android:weightSum="1.0">
 
 
-<fragment
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    tools:context="hdm.csm.emergency.MainActivity" />
+    <fragment xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:context="hdm.csm.emergency.MainActivity" />
 
     <TextView
         android:id="@+id/textView_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:textSize="24dp"/>
+        android:textSize="24dp" />
+
     <TextView
         android:layout_below="@id/textView_Name"
         android:id="@+id/textView_CurrentLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Location"
-        android:textSize="16dp"/>
+        android:textSize="16dp" />
 
     <!--<ImageView-->
     <!--android:id="@+id/weatherIconImageView"-->
@@ -36,43 +36,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_CurrentLocation"
-        android:text="Weather Type"/>
+        android:text="Weather Type" />
+
     <TextView
         android:id="@+id/weatherTempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Temperature"
-        android:layout_below="@id/weatherTypeTextView"/>
+        android:layout_below="@id/weatherTypeTextView" />
     <!--<Button-->
-        <!--android:id="@+id/buttonEmergencyReactionGuide"-->
-        <!--android:layout_below="@id/map"-->
-        <!--android:layout_width="0dip"-->
-        <!--android:layout_weight=".5"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Emergency Reaction Guide"/>-->
+    <!--android:id="@+id/buttonEmergencyReactionGuide"-->
+    <!--android:layout_below="@id/map"-->
+    <!--android:layout_width="0dip"-->
+    <!--android:layout_weight=".5"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Emergency Reaction Guide"/>-->
     <!--<Button-->
-        <!--android:id="@+id/buttonEmergencyContacts"-->
-        <!--android:layout_below="@id/map"-->
-        <!--android:layout_toRightOf="@id/buttonEmergencyReactionGuide"-->
-        <!--android:layout_width="0dip"-->
-        <!--android:layout_weight=".5"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Emergency Contacts"/>-->
+    <!--android:id="@+id/buttonEmergencyContacts"-->
+    <!--android:layout_below="@id/map"-->
+    <!--android:layout_toRightOf="@id/buttonEmergencyReactionGuide"-->
+    <!--android:layout_width="0dip"-->
+    <!--android:layout_weight=".5"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Emergency Contacts"/>-->
 
     <ListView
         android:layout_below="@+id/map"
         android:id="@+id/listMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/menu_array">
-    </ListView>
+        android:entries="@array/menu_array"></ListView>
 
 
     <!--<LinearLayout-->
-        <!--android:layout_below="@+id/map"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical">-->
+    <!--android:layout_below="@+id/map"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
 
 
     <!--</LinearLayout>-->

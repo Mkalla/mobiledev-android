@@ -23,7 +23,7 @@ public class GTCActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gtc);
 
-        gtcTextView = (TextView)findViewById(R.id.gtcTextView);
+        gtcTextView = (TextView) findViewById(R.id.gtcTextView);
 
 
         //Write to internal storage
@@ -49,7 +49,7 @@ public class GTCActivity extends AppCompatActivity {
         }
     }
 
-    private void createFile(){
+    private void createFile() {
         try {
             outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
 
