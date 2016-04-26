@@ -105,12 +105,7 @@ public class Report implements Serializable {
 
     private String weatherReportComment;
 
-
-
-
-    public Report(){
-
-
+    public Report() {
     }
 
 }

@@ -92,10 +92,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         myUser = User.getInstance(getApplicationContext());
 
         //redirect to user registration if no user data
-        if(myUser.getForename() == null || myUser.getSurname() == null) {
+        if (myUser.getForename() == null || myUser.getSurname() == null) {
             startActivity(new Intent(MainActivity.this, RegisterActivity.class));
         }
-
 
 
         textViewCurrentLocation = (TextView) findViewById(R.id.textView_CurrentLocation);
@@ -115,21 +114,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
+                        startActivity(new Intent(MainActivity.this, RegisterFragementActivity.class));
                         break;
                     case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
                         startActivity(new Intent(MainActivity.this, PastReportsActivity.class));
                         break;
-                    case 4:
+                    case 2:
                         startActivity(new Intent(MainActivity.this, FAQActivity.class));
-                        break;
-                    case 5:
-//                        startActivity(new Intent(MainActivity.this, WeatherActivity.class));
-                        break;
-                    case 6:
                         break;
                     default:
                         break;
@@ -141,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
 
         //Geocoder
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -188,12 +178,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onPause();
         //Unregister for location callbacks:
         if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
     }
 
     protected synchronized void buildGoogleApiClient() {
-        Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -210,8 +199,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(5000); //5 seconds
-        mLocationRequest.setFastestInterval(3000); //3 seconds
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setFastestInterval(3000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
@@ -297,8 +286,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         // Instantiate the RequestQueue.
         RequestQueue weatherQueue = Volley.newRequestQueue(this);
 
-//        reqUrl = "http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=3dd3210c-9aff-4547-9c28-9b590cc7d2c9";
-
         baseUrl = "http://api.openweathermap.org";
         qry = "/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=";
         key = "24e194e4e62a3017b24f378910d19827";
@@ -320,24 +307,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                             textViewTemperature.setText(temperature);
 
                             JSONArray jsonWeatherArray = jsonRootObject.getJSONArray("weather");
-//
-//                           //Iterate the jsonArray
-//                            for(int i=0; i < jsonWeatherArray.length(); i++){
+
                             String weatherType = jsonWeatherArray.getJSONObject(0).getString("description"); //NOTE: Don't know why it is an array. Getting the first element in array should be ok
                             textViewWeatherType.setText(weatherType);
 
-//                            }
-
-//                            JSONObject jsonLocationsObject = jsonRootObject.getJSONObject("Locations");
-//                            JSONArray jsonLocationsArray = jsonLocationsObject.getJSONArray("Location");//
-//
-//                            //Iterate the jsonArray and print the info of JSONObjects
-//                            for(int i=0; i < jsonLocationsArray.length(); i++){
-//                                JSONObject jsonObject = jsonLocationsArray.getJSONObject(i);
-//
-//                                data += jsonObject.getString("name") + ", ";
-//                            }
-//
                             Log.i("ExtractedJsonData", data);
 
                         } catch (JSONException e) {

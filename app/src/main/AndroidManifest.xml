@@ -40,12 +40,19 @@
         <activity
             android:name=".GTCActivity"
             android:label="@string/title_activity_gtc" />
-        <activity android:name=".CreateReportActivity" />
         <activity
-            android:name=".WeatherActivity"
-            android:label="Weather" />
-        <activity android:name=".PastReportsActivity" />
-        <activity android:name=".ReportDetailActivity"></activity>
+            android:name=".CreateReportActivity"
+            android:label="@string/title_activity_create_report" />
+        <activity
+            android:name=".PastReportsActivity"
+            android:label="@string/title_activity_past_reports" />
+        <activity
+            android:name=".ReportDetailActivity"
+            android:label="@string/title_activity_report_detail" />
+        <activity
+            android:name=".RegisterFragementActivity"
+            android:label="@string/title_activity_register_fragement"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

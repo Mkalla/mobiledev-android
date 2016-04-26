@@ -33,7 +33,7 @@ public class DataManager {
         return instance;
     }
 
-    public void saveReport(String fileName, Report report){
+    public void saveReport(String fileName, Report report) {
 
 
         //add path to users shared pref
@@ -45,7 +45,7 @@ public class DataManager {
     }
 
 
-    public void saveObjectToInternal(String fileName, Object object){
+    public void saveObjectToInternal(String fileName, Object object) {
         FileOutputStream fos;
         ObjectOutputStream oos;
 
@@ -59,7 +59,7 @@ public class DataManager {
             fos.close();
             Log.i("DataManager", "Saving Success");
 
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Log.i("DataManager", "Saving Failed");
         }
@@ -76,8 +76,7 @@ public class DataManager {
             ois.close();
             fis.close();
             Log.i("DataManager", "Reading Success");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.i("DataManager", "Reading Failed");
         }

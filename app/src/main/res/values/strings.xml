@@ -4,11 +4,13 @@
     <string name="title_activity_register">Registration</string>
     <string name="title_activity_gtc">Terms and Conditions</string>
     <string name="title_activity_faq">FAQs</string>
+    <string name="title_activity_create_report">Create Report</string>
+    <string name="title_activity_past_reports">Past Reports</string>
+    <string name="title_activity_report_detail">Report Details</string>
+
 
     <string-array name="menu_array">
-        <item>File Accident Report</item>
         <item>Detail Exchange Guide</item>
-        <item>Reports in Progress</item>
         <item>Past Reports</item>
         <item>FAQs</item>
     </string-array>
@@ -28,4 +30,15 @@
         <item>Porsche</item>
     </string-array>
     <string name="prompt_vehicle_brand">Vehicle Brand</string>
+
+
+    <string name="google_app_id">ornate-reef-125513</string>
+    <string name="title_activity_register_fragement">RegisterFragementActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

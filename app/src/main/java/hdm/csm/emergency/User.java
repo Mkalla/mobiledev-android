@@ -6,21 +6,22 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
-    private String title;
-    private String forename;
-    private String middlenames;
-    private String surname;
-    private String birthday;
-    private String address1;
-    private String address2;
-    private String city;
-    private String county;
-    private String email;
-    private String tel;
-    private String mobile;
+public class User implements Serializable {
+    private String title = "";
+    private String forename = null;
+    private String middlenames = "";
+    private String surname = null;
+    private String birthday = "";
+    private String address1 = "";
+    private String address2 = "";
+    private String city = "";
+    private String county = "";
+    private String email = "";
+    private String tel = "";
+    private String mobile = "";
 
     private ArrayList<String> paths = new ArrayList<>();
 
@@ -166,7 +167,7 @@ public class User {
         this.paths = paths;
     }
 
-    public void addPath(String path){
+    public void addPath(String path) {
         this.paths.add(path);
     }
 }

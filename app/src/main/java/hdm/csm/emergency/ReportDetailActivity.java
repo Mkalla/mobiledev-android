@@ -17,6 +17,9 @@ public class ReportDetailActivity extends AppCompatActivity {
     Report report;
 
     TextView tv_name;
+    TextView tv_birthday;
+    TextView tv_commentsRoad;
+
 
     ListView listView;
     LinearLayout ll_roadReportImage;
@@ -31,13 +34,23 @@ public class ReportDetailActivity extends AppCompatActivity {
         report = (Report) getIntent().getSerializableExtra("report");
 
         //Set textviews
-        tv_name = (TextView) findViewById(R.id.name);
-        tv_name.setText(report.getRoadReportComment());
+        tv_name = (TextView) findViewById(R.id.tv_name);
+        tv_name.setText(report.getUser().getSurname() + ", " + report.getUser().getForename());
+
+        tv_birthday = (TextView) findViewById(R.id.tv_birthday);
+        tv_birthday.setText(report.getUser().getBirthday());
+
+        tv_commentsRoad = (TextView) findViewById(R.id.tv_commentsRoad);
+        tv_commentsRoad.setText(report.getRoadReportComment());
 
         ArrayList<String> entries = new ArrayList<>();
-        entries.add(report.getRoadReportComment());
+//        entries.add(report.getRoadReportComment());
+//        entries.add("Temperature: 10°c");
+//        entries.add("Location: Lady Lane 23, PA12LH Paisley");
 
-        listView = (ListView) findViewById (R.id.list);
+
+
+        listView = (ListView) findViewById(R.id.list);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, entries);
         listView.setAdapter(adapter);
 
@@ -46,12 +59,12 @@ public class ReportDetailActivity extends AppCompatActivity {
 
         ArrayList<String> paths = report.getRoadReportImageURIs();
 
-        for(int i = 0; i < paths.size(); i++) {
+        for (int i = 0; i < paths.size(); i++) {
             addImageToScrollView(Uri.parse(paths.get(i)), ll_roadReportImage);
         }
     }
 
-    private void addImageToScrollView(Uri uri, LinearLayout view){
+    private void addImageToScrollView(Uri uri, LinearLayout view) {
         ImageView tempImageView = new ImageView(this);
 
         Bitmap imageBitmap = null;

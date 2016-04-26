@@ -57,7 +57,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etTel = (EditText) findViewById(R.id.tel);
         etMobile = (EditText) findViewById(R.id.mobile);
 
-
         myUser = User.getInstance(getApplicationContext());
 
         //Set EditTexts if user exists
@@ -74,8 +73,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             etEmail.setText(myUser.getEmail());
             etTel.setText(myUser.getTel());
             etMobile.setText(myUser.getMobile());
-
-            Toast.makeText(this, "User loaded", Toast.LENGTH_SHORT).show();
         }
 
         datePickerDialog = new DatePickerDialog.OnDateSetListener() {

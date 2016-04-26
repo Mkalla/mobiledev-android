@@ -29,6 +29,7 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
     ImageView myImageView;
     Button takePictureButton;
     Button createReportButton;
+    Button cancelButton;
     LinearLayout imageContainer;
 
     Uri mImageURI;
@@ -49,17 +50,18 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
 
         setContentView(R.layout.activity_create_report);
 
-        myImageView = (ImageView) findViewById(R.id.myImageView);
-
         takePictureButton = (Button) findViewById(R.id.button_takePicture);
         takePictureButton.setOnClickListener(this);
 
         createReportButton = (Button) findViewById(R.id.button_createReport);
         createReportButton.setOnClickListener(this);
 
+        cancelButton = (Button) findViewById(R.id.button_cancel);
+        cancelButton.setOnClickListener(this);
+
         imageContainer = (LinearLayout) findViewById(R.id.imageContainer);
 
-        etRoadReportComment = (EditText)findViewById(R.id.et_roadReportComment);
+        etRoadReportComment = (EditText) findViewById(R.id.et_roadReportComment);
     }
 
     @Override
@@ -88,6 +90,10 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
                         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                     }
                 }
+                break;
+            case R.id.button_cancel:
+                setResult(Activity.RESULT_CANCELED);
+                finish();
                 break;
             case R.id.button_createReport:
                 Toast.makeText(this, "Report created", Toast.LENGTH_SHORT).show();
@@ -140,10 +146,12 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
         return image;
     }
 
-    private void createReport(){
+    private void createReport() {
         report = new Report();
         report.setRoadReportImageURIs(this.roadReportImageURIs);
         report.setRoadReportComment(etRoadReportComment.getText().toString());
+        report.setUser(User.getInstance(getApplicationContext()));
+
 
 
         //Createfile and save
