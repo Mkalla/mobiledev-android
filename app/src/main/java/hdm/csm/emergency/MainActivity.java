@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
+                startActivity(new Intent(MainActivity.this, RegisterFragementActivity.class));
                 break;
             default:
                 break;

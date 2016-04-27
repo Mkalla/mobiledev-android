@@ -71,7 +71,7 @@
                 android:id="@+id/et_roadReportComment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Add a comment"
+                android:hint="What condition is the road in?"
                 android:singleLine="false" />
         </android.support.design.widget.TextInputLayout>
 

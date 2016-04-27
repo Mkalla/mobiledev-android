@@ -51,7 +51,7 @@
             android:label="@string/title_activity_report_detail" />
         <activity
             android:name=".RegisterFragementActivity"
-            android:label="@string/title_activity_register_fragement"
+            android:label="File Report"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

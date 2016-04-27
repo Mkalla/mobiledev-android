@@ -37,8 +37,12 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
     Report report;
 
     ArrayList<String> roadReportImageURIs = new ArrayList<String>();
+    ArrayList<String> vehicleReportImageURIs = new ArrayList<String>();
+    ArrayList<String> witnessReportImageURIs = new ArrayList<String>();
 
     EditText etRoadReportComment;
+    EditText etVehicleReportComment;
+    EditText etWitnessReportComment;
 
     DataManager dataManager;
 
@@ -62,6 +66,8 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
         imageContainer = (LinearLayout) findViewById(R.id.imageContainer);
 
         etRoadReportComment = (EditText) findViewById(R.id.et_roadReportComment);
+        etVehicleReportComment = (EditText) findViewById(R.id.et_vehicleReportComment);
+        etWitnessReportComment = (EditText) findViewById(R.id.et_witnessReportComment);
     }
 
     @Override
@@ -150,9 +156,11 @@ public class CreateReportActivity extends AppCompatActivity implements View.OnCl
         report = new Report();
         report.setRoadReportImageURIs(this.roadReportImageURIs);
         report.setRoadReportComment(etRoadReportComment.getText().toString());
+        report.setVehicleReportComment(etVehicleReportComment.getText().toString());
+
+        //report.setWitnessReportImageURIs(this.witnessReportImageURIs);
+        //report.setWitnessReportComment(etWitnessReportComment.getText().toString());
         report.setUser(User.getInstance(getApplicationContext()));
-
-
 
         //Createfile and save
         String filename = "report_" + System.currentTimeMillis();

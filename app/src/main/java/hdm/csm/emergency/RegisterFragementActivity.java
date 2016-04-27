@@ -37,7 +37,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class RegisterFragementActivity extends AppCompatActivity implements Step1Fragment.OnFragmentInteractionListener, Step2Fragment.OnFragmentInteractionListener, View.OnClickListener{
+public class RegisterFragementActivity
+        extends AppCompatActivity
+        implements Step1Fragment.OnFragmentInteractionListener,
+        Step2Fragment.OnFragmentInteractionListener,
+        Step3Fragment.OnFragmentInteractionListener,
+        View.OnClickListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -65,11 +70,11 @@ public class RegisterFragementActivity extends AppCompatActivity implements Step
 
     Step1Fragment step1Fragment;
     Step2Fragment step2Fragment;
-//    Step3Fragment step3Fragment;
-
+    Step3Fragment step3Fragment;
 
     ArrayList<String> roadReportImageURIs = new ArrayList<String>();
-
+    ArrayList<String> vehicleReportImageURIs = new ArrayList<String>();
+    ArrayList<String> witnessReportImageURIs = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,8 +152,11 @@ public class RegisterFragementActivity extends AppCompatActivity implements Step
                     step1Fragment = Step1Fragment.newInstance();
                     return step1Fragment;
                 case 1:
-                    step2Fragment = Step2Fragment.newInstance("String1", "String2");
+                    step2Fragment = Step2Fragment.newInstance();
                     return step2Fragment;
+                case 2:
+                    step3Fragment = Step3Fragment.newInstance();
+                    return step3Fragment;
                 default:
                     return Step1Fragment.newInstance();
             }
@@ -214,6 +222,13 @@ public class RegisterFragementActivity extends AppCompatActivity implements Step
         //Get all road report fields
         report.setRoadReportImageURIs(this.roadReportImageURIs);
         report.setRoadReportComment(step1Fragment.etRoadReportComment.getText().toString());
+
+        report.setVehicleReportImageURIs(this.vehicleReportImageURIs);
+        report.setVehicleReportComment(step2Fragment.etVehicleReportComment.getText().toString());
+
+        report.setWitnessReportImageURIs(this.witnessReportImageURIs);
+        report.setWitnessReportComment(step3Fragment.etWitnessReportComment.getText().toString());
+
         report.setUser(User.getInstance(getApplicationContext()));
 
         //Createfile and save

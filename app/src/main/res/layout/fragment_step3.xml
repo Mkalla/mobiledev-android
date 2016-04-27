@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="?android:attr/listSeparatorTextViewStyle"
-                android:text="Vehicle Report"
+                android:text="Witness Report"
                 android:layout_marginBottom="20dp" />
             <Button
                 android:id="@+id/button_takePicture"
@@ -63,10 +63,10 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/et_vehicleReportComment"
+                android:id="@+id/et_witnessReportComment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="What condition are/is the vehicle(s) in?"
+                android:hint="Add a transcript of a witness statement"
                 android:singleLine="false" />
         </android.support.design.widget.TextInputLayout>
 

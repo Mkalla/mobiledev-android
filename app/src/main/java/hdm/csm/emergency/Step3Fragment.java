@@ -15,25 +15,22 @@ import android.widget.LinearLayout;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Step2Fragment.OnFragmentInteractionListener} interface
+ * {@link Step3Fragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Step2Fragment#newInstance} factory method to
+ * Use the {@link Step3Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Step2Fragment extends Fragment {
+public class Step3Fragment extends Fragment {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1337;
-
+    private OnFragmentInteractionListener mListener;
     Button takePictureButton;
     LinearLayout imageContainer;
 
     Uri mImageURI;
 
-    EditText etVehicleReportComment;
+    EditText etWitnessReportComment;
 
-    private OnFragmentInteractionListener mListener;
-
-    public Step2Fragment() {
+    public Step3Fragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +38,11 @@ public class Step2Fragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment Step2Fragment.
+     * @return A new instance of fragment Step3Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Step2Fragment newInstance() {
-        Step2Fragment fragment = new Step2Fragment();
+    public static Step3Fragment newInstance() {
+        Step3Fragment fragment = new Step3Fragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -60,9 +57,8 @@ public class Step2Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View fragmentView = inflater.inflate(R.layout.fragment_step2, container, false);
-        etVehicleReportComment = (EditText) fragmentView.findViewById(R.id.et_vehicleReportComment);
+        View fragmentView = inflater.inflate(R.layout.fragment_step3, container, false);
+        etWitnessReportComment = (EditText) fragmentView.findViewById(R.id.et_witnessReportComment);
 
         // Inflate the layout for this fragment
         return fragmentView;
@@ -102,7 +98,6 @@ public class Step2Fragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

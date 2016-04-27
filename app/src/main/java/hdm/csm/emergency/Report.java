@@ -94,7 +94,7 @@ public class Report implements Serializable {
     private Location location;
     private User user;
 
-    private String roadReportComment = "Test";
+    private String roadReportComment;
     private ArrayList<String> roadReportImageURIs = new ArrayList<String>();
 
     private String vehicleReportComment;

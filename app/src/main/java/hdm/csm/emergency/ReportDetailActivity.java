@@ -19,6 +19,8 @@ public class ReportDetailActivity extends AppCompatActivity {
     TextView tv_name;
     TextView tv_birthday;
     TextView tv_commentsRoad;
+    TextView tv_commentsVehicle;
+    TextView tv_commentsWitness;
 
 
     ListView listView;
@@ -42,6 +44,12 @@ public class ReportDetailActivity extends AppCompatActivity {
 
         tv_commentsRoad = (TextView) findViewById(R.id.tv_commentsRoad);
         tv_commentsRoad.setText(report.getRoadReportComment());
+
+        tv_commentsVehicle = (TextView) findViewById(R.id.tv_commentsVehicle);
+        tv_commentsVehicle.setText(report.getVehicleReportComment());
+
+        tv_commentsWitness = (TextView) findViewById(R.id.tv_commentsWitness);
+        tv_commentsWitness.setText(report.getWitnessReportComment());
 
         ArrayList<String> entries = new ArrayList<>();
 //        entries.add(report.getRoadReportComment());
