@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageScrollView">
             <LinearLayout
-                android:id="@+id/imageContainer"
+                android:id="@+id/roadImageContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

@@ -25,6 +25,8 @@ public class ReportDetailActivity extends AppCompatActivity {
 
     ListView listView;
     LinearLayout ll_roadReportImage;
+    LinearLayout ll_vehicleReportImage;
+    LinearLayout ll_witnessReportImage;
     ArrayAdapter<String> adapter;
 
     @Override
@@ -63,12 +65,30 @@ public class ReportDetailActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //Set image views
-        ll_roadReportImage = (LinearLayout) findViewById(R.id.imageContainer);
+        ll_roadReportImage = (LinearLayout) findViewById(R.id.roadImageContainer);
 
-        ArrayList<String> paths = report.getRoadReportImageURIs();
+        ArrayList<String> roadImgPaths = report.getRoadReportImageURIs();
 
-        for (int i = 0; i < paths.size(); i++) {
-            addImageToScrollView(Uri.parse(paths.get(i)), ll_roadReportImage);
+        for (int i = 0; i < roadImgPaths.size(); i++) {
+            addImageToScrollView(Uri.parse(roadImgPaths.get(i)), ll_roadReportImage);
+        }
+
+        //Set image views
+        ll_vehicleReportImage = (LinearLayout) findViewById(R.id.vehicleImageContainer);
+
+        ArrayList<String> vehicleImgPaths = report.getVehicleReportImageURIs();
+
+        for (int i = 0; i < vehicleImgPaths.size(); i++) {
+            addImageToScrollView(Uri.parse(vehicleImgPaths.get(i)), ll_vehicleReportImage);
+        }
+
+        //Set image views
+        ll_witnessReportImage = (LinearLayout) findViewById(R.id.witnessImageContainer);
+
+        ArrayList<String> witnessImgPaths = report.getWitnessReportImageURIs();
+
+        for (int i = 0; i < witnessImgPaths.size(); i++) {
+            addImageToScrollView(Uri.parse(witnessImgPaths.get(i)), ll_witnessReportImage);
         }
     }
 

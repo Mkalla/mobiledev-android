@@ -35,7 +35,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
     static final int REQUEST_IMAGE_CAPTURE = 1337;
 
     Button takePictureButton;
-    LinearLayout imageContainer;
+    LinearLayout roadImageContainer;
 
     Uri mImageURI;
 
@@ -78,7 +78,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
         takePictureButton = (Button) fragmentView.findViewById(R.id.button_takePicture);
         takePictureButton.setOnClickListener(this);
 
-        imageContainer = (LinearLayout) fragmentView.findViewById(R.id.imageContainer);
+        roadImageContainer = (LinearLayout) fragmentView.findViewById(R.id.roadImageContainer);
 
         etRoadReportComment = (EditText) fragmentView.findViewById(R.id.et_roadReportComment);
 
@@ -176,7 +176,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
                 tempImageView.setLayoutParams(lp);
                 tempImageView.setImageBitmap(imageBitmap);
 
-                imageContainer.addView(tempImageView);
+                roadImageContainer.addView(tempImageView);
                 ((RegisterFragementActivity)getActivity()).roadReportImageURIs.add(mImageURI.toString());
             }
         }
