@@ -170,4 +170,8 @@ public class User implements Serializable {
     public void addPath(String path) {
         this.paths.add(path);
     }
+    public void removePath(int position) {
+        this.paths.remove(position);
+        this.saveInstance();
+    }
 }

@@ -47,38 +47,27 @@ public class PastReportsActivity extends AppCompatActivity {
             }
         });
 
-//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(PastReportsActivity.this);
-//                alertBuilder.setTitle("Delete this report?");
-//
-//                alertBuilder.setMessage("Are you sure you want to delete this item?");
-//                final int positionToRemove = position;
-//                alertBuilder.setNegativeButton("Cancel", null);
-//                alertBuilder.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        paths.remove(positionToRemove);
-//                        adapter.notifyDataSetChanged();
-//                    }
-//                });
-//
-//                alertBuilder.show();
-//                return false;
-//            }
-//        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(PastReportsActivity.this);
+                alertBuilder.setTitle("Delete this report?");
 
+                alertBuilder.setMessage("Are you sure you want to delete this item?");
+                final int positionToRemove = position;
+                alertBuilder.setNegativeButton("Cancel", null);
+                alertBuilder.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        user.removePath(positionToRemove);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
-        //Get all report paths from user shared pref
+                alertBuilder.show();
+                return true;
+            }
+        });
 
-        //Get all reports and append to reports array list
-//        for(int i = 0; i < paths.size(); i++){
-//
-//            Report report = (Report) dataManager.readObjectFromMemory(paths.get(i));
-////            Log.i("Paths", );
-//
-//            reports.add(report);
-//        }
 
         ArrayList<String> names = new ArrayList<>();
 

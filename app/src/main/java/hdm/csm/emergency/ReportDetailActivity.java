@@ -61,17 +61,6 @@ public class ReportDetailActivity extends AppCompatActivity {
         tv_weatherType = (TextView) findViewById(R.id.tv_weather);
         tv_weatherType.setText(report.getWeatherType());
 
-        ArrayList<String> entries = new ArrayList<>();
-//        entries.add(report.getRoadReportComment());
-//        entries.add("Temperature: 10°c");
-//        entries.add("Location: Lady Lane 23, PA12LH Paisley");
-
-
-
-        listView = (ListView) findViewById(R.id.list);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, entries);
-        listView.setAdapter(adapter);
-
         //Set image views
         ll_roadReportImage = (LinearLayout) findViewById(R.id.roadImageContainer);
 
