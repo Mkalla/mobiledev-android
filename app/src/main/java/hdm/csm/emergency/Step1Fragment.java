@@ -29,7 +29,7 @@ import java.io.IOException;
  * Use the {@link Step1Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Step1Fragment extends Fragment implements View.OnClickListener{
+public class Step1Fragment extends Fragment implements View.OnClickListener {
 
     static final int REQUEST_IMAGE_CAPTURE = 1337;
 
@@ -139,7 +139,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
                     // Create the File where the photo should go
                     File photoFile = null;
                     try {
-                        photoFile = ((CreateReportActivity)getActivity()).createImageFile();
+                        photoFile = ((CreateReportActivity) getActivity()).createImageFile();
                     } catch (IOException ex) {
                         // Error occurred while creating the File
                         Log.i("exceptioncreatefile", ex.toString());
@@ -176,7 +176,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
                 tempImageView.setImageBitmap(imageBitmap);
 
                 roadImageContainer.addView(tempImageView);
-                ((CreateReportActivity)getActivity()).roadReportImageURIs.add(mImageURI.toString());
+                ((CreateReportActivity) getActivity()).roadReportImageURIs.add(mImageURI.toString());
             }
         }
     }

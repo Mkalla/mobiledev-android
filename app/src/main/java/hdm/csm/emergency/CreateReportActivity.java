@@ -25,7 +25,7 @@ public class CreateReportActivity
         implements Step1Fragment.OnFragmentInteractionListener,
         Step2Fragment.OnFragmentInteractionListener,
         Step3Fragment.OnFragmentInteractionListener,
-        View.OnClickListener{
+        View.OnClickListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -92,7 +92,7 @@ public class CreateReportActivity
         tabLayout.setupWithViewPager(mViewPager);
     }
 
-    public void onFragmentInteraction(Uri uri){
+    public void onFragmentInteraction(Uri uri) {
         //you can leave it empty
     }
 
@@ -110,7 +110,7 @@ public class CreateReportActivity
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            switch (position){
+            switch (position) {
                 case 0:
                     return step1Fragment;
                 case 1:

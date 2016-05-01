@@ -99,7 +99,6 @@ public class Report implements Serializable {
     }
 
 
-
     private Date date;
     private Location location;
     private User user;

@@ -46,21 +46,23 @@
     </android.support.design.widget.CoordinatorLayout>
 
 
-
-    <LinearLayout style="?android:buttonBarStyle"
+    <LinearLayout
+        style="?android:buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
 
-        <Button style="?android:buttonBarButtonStyle"
+        <Button
+            style="?android:buttonBarButtonStyle"
             android:id="@+id/button_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="cancel" />
 
-        <Button style="?android:buttonBarButtonStyle"
+        <Button
+            style="?android:buttonBarButtonStyle"
             android:id="@+id/button_createReport"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

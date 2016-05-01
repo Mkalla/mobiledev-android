@@ -136,7 +136,7 @@ public class Step2Fragment extends Fragment implements View.OnClickListener {
                     // Create the File where the photo should go
                     File photoFile = null;
                     try {
-                        photoFile = ((CreateReportActivity)getActivity()).createImageFile();
+                        photoFile = ((CreateReportActivity) getActivity()).createImageFile();
                     } catch (IOException ex) {
                         // Error occurred while creating the File
                         Log.i("exceptioncreatefile", ex.toString());
@@ -173,7 +173,7 @@ public class Step2Fragment extends Fragment implements View.OnClickListener {
                 tempImageView.setImageBitmap(imageBitmap);
 
                 vehicleImageContainer.addView(tempImageView);
-                ((CreateReportActivity)getActivity()).vehicleReportImageURIs.add(mImageURI.toString());
+                ((CreateReportActivity) getActivity()).vehicleReportImageURIs.add(mImageURI.toString());
             }
         }
     }
