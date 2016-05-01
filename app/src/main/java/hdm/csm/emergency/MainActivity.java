@@ -1,10 +1,13 @@
 package hdm.csm.emergency;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -93,12 +96,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         user = User.getInstance(getApplicationContext());
         dataManager = DataManager.getInstance(getApplicationContext());
 
-        //redirect to user registration if no user data
-        if (user.getForename() == null || user.getSurname() == null) {
-            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-        }
-
-
         textViewCurrentLocation = (TextView) findViewById(R.id.textView_CurrentLocation);
         textViewName = (TextView) findViewById(R.id.textView_Name);
 
@@ -135,13 +132,39 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //Geocoder
         geocoder = new Geocoder(this, Locale.getDefault());
+
+        //Geocoder
+        if(!internetAvailable(this)) {
+            Toast.makeText(this, "No internet connection. Some features won't work", Toast.LENGTH_SHORT).show();
+            textViewCurrentLocation.setText("No internet connection");
+        }
     }
 
+    public static boolean internetAvailable(Context context){
+        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isConnected = false;
+        if (connectivity != null) {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        isConnected = true;
+                    }
+                }
+            }
+        }
+        return isConnected;
+    }
+    
     @Override
     protected void onStart() {
         super.onStart();
+
+        //redirect to user registration if no user data
+        if (user.getForename() == null || user.getSurname() == null) {
+            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+        }
 
         if (user != null) {
             textViewName.setText(user.getForename() + " " + user.getSurname());
@@ -201,8 +224,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(5000);
-        mLocationRequest.setFastestInterval(3000);
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
@@ -257,29 +280,32 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
             List<Address> addresses = null;
 
-            try {
-                addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            } catch (IOException ioException) {
-                // Catch network or other I/O problems.
-                Log.i("Geocoder", "Geocoding failed");
-            }
-
-            // Handle case where no address was found.
-            if (addresses == null || addresses.size() == 0) {
-                Log.i("Geocoder", "Address not found");
-            } else {
-                Address address = addresses.get(0);
-
-                // Fetch the address lines using getAddressLine,
-                // join them, and send them to the thread.
-
-                ArrayList<String> addressFragments = new ArrayList<String>();
-                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-                    addressFragments.add(address.getAddressLine(i));
+            if(internetAvailable(this)) {
+                try {
+                    addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                } catch (IOException ioException) {
+                    // Catch network or other I/O problems.
+                    Log.i("Geocoder", "Geocoding failed");
                 }
 
-                textViewCurrentLocation.setText(TextUtils.join(System.getProperty("line.separator"),
-                        addressFragments));
+                // Handle case where no address was found.
+                if (addresses == null || addresses.size() == 0) {
+                    Log.i("Geocoder", "Address not found");
+                } else {
+                    Address address = addresses.get(0);
+
+                    // Fetch the address lines using getAddressLine,
+                    // join them, and send them to the thread.
+
+                    ArrayList<String> addressFragments = new ArrayList<String>();
+                    for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                        addressFragments.add(address.getAddressLine(i));
+                    }
+
+                    textViewCurrentLocation.setText(TextUtils.join(System.getProperty("line.separator"),
+                            addressFragments));
+                }
+
             }
         }
     }

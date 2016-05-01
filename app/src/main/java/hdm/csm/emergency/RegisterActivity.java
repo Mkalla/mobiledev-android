@@ -130,7 +130,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 setResult(Activity.RESULT_OK);
                 finish();
 
-//                Toast.makeText(this,"Saved",Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

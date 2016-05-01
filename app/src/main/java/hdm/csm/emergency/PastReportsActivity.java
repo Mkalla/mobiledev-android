@@ -14,8 +14,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class PastReportsActivity extends AppCompatActivity {
-
-
     User user;
     DataManager dataManager;
     ArrayList<Report> reports = new ArrayList<>();
@@ -33,7 +31,6 @@ public class PastReportsActivity extends AppCompatActivity {
 
         ArrayList<String> paths = user.getPaths();
 
-
         listView = (ListView) findViewById(R.id.list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -47,6 +44,8 @@ public class PastReportsActivity extends AppCompatActivity {
             }
         });
 
+
+        //Delete report on long click
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,15 +66,6 @@ public class PastReportsActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-        ArrayList<String> names = new ArrayList<>();
-
-        //Create list
-        for (int i = 0; i < reports.size(); i++) {
-            Log.i("Reports", Integer.toString(reports.size()));
-            names.add(reports.get(i).getRoadReportComment());
-        }
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, paths);
         listView.setAdapter(adapter);

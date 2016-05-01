@@ -49,8 +49,6 @@ public class CreateReportActivity
     Button createReportButton;
     Button cancelButton;
 
-    Uri mImageURI;
-
     Step1Fragment step1Fragment;
     Step2Fragment step2Fragment;
     Step3Fragment step3Fragment;

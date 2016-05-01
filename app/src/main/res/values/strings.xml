@@ -8,14 +8,12 @@
     <string name="title_activity_past_reports">Past Reports</string>
     <string name="title_activity_report_detail">Report Details</string>
 
-
     <string-array name="menu_array">
         <item>Detail Exchange Guide</item>
         <item>Past Reports</item>
         <item>FAQs</item>
     </string-array>
     <string name="title_activity_login">Log In</string>
-
 
     <string-array name="vehicle_type_array">
         <item>- Select one-</item>
@@ -27,18 +25,47 @@
     <string-array name="vehicle_brand_array">
         <item>- Select one-</item>
         <item>Audi</item>
+        <item>BMW</item>
+        <item>Chevrolet</item>
+        <item>Chrysler</item>
+        <item>Citroen</item>
+        <item>Dacia</item>
+        <item>Daihatsu</item>
+        <item>Dodge</item>
+        <item>Ferrari</item>
+        <item>Fiat</item>
+        <item>Ford</item>
+        <item>Honda</item>
+        <item>Hyundai</item>
+        <item>Jaguar</item>
+        <item>Jeep</item>
+        <item>KIA</item>
+        <item>Lada</item>
+        <item>Lamborghini</item>
+        <item>Lancia</item>
+        <item>Land Rover</item>
+        <item>Lexus</item>
+        <item>Lotus</item>
+        <item>Maserati</item>
+        <item>Mazda</item>
+        <item>Mercedes</item>
+        <item>Mitsubishi</item>
+        <item>Nissan</item>
+        <item>Opel</item>
         <item>Porsche</item>
+        <item>Renault</item>
+        <item>Seat</item>
+        <item>Smart</item>
+        <item>Subaru</item>
+        <item>Suzuki</item>
+        <item>Toyota</item>
+        <item>Vauxhall</item>
+        <item>Volkswagen</item>
+        <item>Volvo</item>
+        <item>other</item>
     </string-array>
     <string name="prompt_vehicle_brand">Vehicle Brand</string>
 
-
     <string name="google_app_id">ornate-reef-125513</string>
-    <string name="title_activity_register_fragement">RegisterFragementActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
 </resources>

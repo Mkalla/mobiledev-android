@@ -24,12 +24,9 @@ public class ReportDetailActivity extends AppCompatActivity {
     TextView tv_temperature;
     TextView tv_weatherType;
 
-
-    ListView listView;
     LinearLayout ll_roadReportImage;
     LinearLayout ll_vehicleReportImage;
     LinearLayout ll_witnessReportImage;
-    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
