@@ -16,6 +16,10 @@ public class DataManager {
     Context context;
     User user;
 
+    String weatherType;
+    String temperature;
+
+
     //Singleton to use same object in every activity
     private static DataManager instance;
 
@@ -83,4 +87,21 @@ public class DataManager {
 
         return object;
     }
+
+    public String getWeatherType() {
+        return weatherType;
+    }
+
+    public void setWeatherType(String weatherType) {
+        this.weatherType = weatherType;
+    }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
+    }
+
 }

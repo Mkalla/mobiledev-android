@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     TextView textViewTemperature;
     FloatingActionButton fab;
 
-    User myUser;
+    User user;
+    DataManager dataManager;
     Geocoder geocoder;
 
     double latitude;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                startActivity(new Intent(MainActivity.this, RegisterFragementActivity.class));
+                startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
                 break;
             default:
                 break;
@@ -89,10 +90,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myUser = User.getInstance(getApplicationContext());
+        user = User.getInstance(getApplicationContext());
+        dataManager = DataManager.getInstance(getApplicationContext());
 
         //redirect to user registration if no user data
-        if (myUser.getForename() == null || myUser.getSurname() == null) {
+        if (user.getForename() == null || user.getSurname() == null) {
             startActivity(new Intent(MainActivity.this, RegisterActivity.class));
         }
 
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(MainActivity.this, RegisterFragementActivity.class));
+                        startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
                         break;
                     case 1:
                         startActivity(new Intent(MainActivity.this, PastReportsActivity.class));
@@ -141,8 +143,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     protected void onStart() {
         super.onStart();
 
-        if (myUser != null) {
-            textViewName.setText(myUser.getForename() + " " + myUser.getSurname());
+        if (user != null) {
+            textViewName.setText(user.getForename() + " " + user.getSurname());
         }
     }
 
@@ -305,11 +307,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                             String temperature = jsonRootObject.getJSONObject("main").getString("temp") + " °C";
                             textViewTemperature.setText(temperature);
+                            dataManager.setTemperature(temperature);
+
 
                             JSONArray jsonWeatherArray = jsonRootObject.getJSONArray("weather");
 
                             String weatherType = jsonWeatherArray.getJSONObject(0).getString("description"); //NOTE: Don't know why it is an array. Getting the first element in array should be ok
                             textViewWeatherType.setText(weatherType);
+                            dataManager.setWeatherType(weatherType);
 
                             Log.i("ExtractedJsonData", data);
 

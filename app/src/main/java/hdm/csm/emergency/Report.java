@@ -82,13 +82,23 @@ public class Report implements Serializable {
         this.witnessReportImageURIs = witnessReportImageURIs;
     }
 
-    public String getWeatherReportComment() {
-        return weatherReportComment;
+    public String getWeatherType() {
+        return weatherType;
     }
 
-    public void setWeatherReportComment(String weatherReportComment) {
-        this.weatherReportComment = weatherReportComment;
+    public void setWeatherType(String weatherType) {
+        this.weatherType = weatherType;
     }
+
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
+    }
+
+
 
     private Date date;
     private Location location;
@@ -103,7 +113,8 @@ public class Report implements Serializable {
     private String witnessReportComment;
     private ArrayList<String> witnessReportImageURIs = new ArrayList<String>();
 
-    private String weatherReportComment;
+    private String weatherType = "";
+    private String temperature = "";
 
     public Report() {
     }

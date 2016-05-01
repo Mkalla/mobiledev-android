@@ -44,7 +44,7 @@ public class User implements Serializable {
             //If not: check if there is a user saved in shared pref
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             prefsEditor = sharedPreferences.edit();
-            String json = sharedPreferences.getString("myUser", null);
+            String json = sharedPreferences.getString("user", null);
 
             if (json != null) {
                 instance = gson.fromJson(json, User.class);
@@ -58,7 +58,7 @@ public class User implements Serializable {
 
     public void saveInstance() {
         String json = gson.toJson(instance);
-        prefsEditor.putString("myUser", json);
+        prefsEditor.putString("user", json);
         prefsEditor.commit();
     }
 

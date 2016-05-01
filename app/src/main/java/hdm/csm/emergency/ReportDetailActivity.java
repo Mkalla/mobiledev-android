@@ -21,6 +21,8 @@ public class ReportDetailActivity extends AppCompatActivity {
     TextView tv_commentsRoad;
     TextView tv_commentsVehicle;
     TextView tv_commentsWitness;
+    TextView tv_temperature;
+    TextView tv_weatherType;
 
 
     ListView listView;
@@ -52,6 +54,12 @@ public class ReportDetailActivity extends AppCompatActivity {
 
         tv_commentsWitness = (TextView) findViewById(R.id.tv_commentsWitness);
         tv_commentsWitness.setText(report.getWitnessReportComment());
+
+        tv_temperature = (TextView) findViewById(R.id.tv_temperature);
+        tv_temperature.setText(report.getTemperature());
+
+        tv_weatherType = (TextView) findViewById(R.id.tv_weather);
+        tv_weatherType.setText(report.getWeatherType());
 
         ArrayList<String> entries = new ArrayList<>();
 //        entries.add(report.getRoadReportComment());

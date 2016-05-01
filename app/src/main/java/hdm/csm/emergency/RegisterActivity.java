@@ -16,7 +16,7 @@ import java.util.Calendar;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button registerButton;
-    User myUser;
+    User user;
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener datePickerDialog;
 
@@ -57,22 +57,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etTel = (EditText) findViewById(R.id.tel);
         etMobile = (EditText) findViewById(R.id.mobile);
 
-        myUser = User.getInstance(getApplicationContext());
+        user = User.getInstance(getApplicationContext());
 
         //Set EditTexts if user exists
-        if (myUser != null) {
-            etTitle.setText(myUser.getTitle());
-            etForename.setText(myUser.getForename());
-            etMiddlenames.setText(myUser.getMiddlenames());
-            etSurname.setText(myUser.getSurname());
-            etBirthday.setText(myUser.getBirthday());
-            etAddress1.setText(myUser.getAddress1());
-            etAddress2.setText(myUser.getAddress2());
-            etCity.setText(myUser.getCity());
-            etCounty.setText(myUser.getCounty());
-            etEmail.setText(myUser.getEmail());
-            etTel.setText(myUser.getTel());
-            etMobile.setText(myUser.getMobile());
+        if (user != null) {
+            etTitle.setText(user.getTitle());
+            etForename.setText(user.getForename());
+            etMiddlenames.setText(user.getMiddlenames());
+            etSurname.setText(user.getSurname());
+            etBirthday.setText(user.getBirthday());
+            etAddress1.setText(user.getAddress1());
+            etAddress2.setText(user.getAddress2());
+            etCity.setText(user.getCity());
+            etCounty.setText(user.getCounty());
+            etEmail.setText(user.getEmail());
+            etTel.setText(user.getTel());
+            etMobile.setText(user.getMobile());
         }
 
         datePickerDialog = new DatePickerDialog.OnDateSetListener() {
@@ -114,20 +114,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.registerButton:
-                myUser.setTitle(etTitle.getText().toString());
-                myUser.setForename(etForename.getText().toString());
-                myUser.setMiddlenames(etMiddlenames.getText().toString());
-                myUser.setSurname(etSurname.getText().toString());
-                myUser.setBirthday(etBirthday.getText().toString());
-                myUser.setAddress1(etAddress1.getText().toString());
-                myUser.setAddress2(etAddress2.getText().toString());
-                myUser.setCity(etCity.getText().toString());
-                myUser.setCounty(etCounty.getText().toString());
-                myUser.setEmail(etEmail.getText().toString());
-                myUser.setTel(etTel.getText().toString());
-                myUser.setMobile(etMobile.getText().toString());
+                user.setTitle(etTitle.getText().toString());
+                user.setForename(etForename.getText().toString());
+                user.setMiddlenames(etMiddlenames.getText().toString());
+                user.setSurname(etSurname.getText().toString());
+                user.setBirthday(etBirthday.getText().toString());
+                user.setAddress1(etAddress1.getText().toString());
+                user.setAddress2(etAddress2.getText().toString());
+                user.setCity(etCity.getText().toString());
+                user.setCounty(etCounty.getText().toString());
+                user.setEmail(etEmail.getText().toString());
+                user.setTel(etTel.getText().toString());
+                user.setMobile(etMobile.getText().toString());
 
-                myUser.saveInstance();
+                user.saveInstance();
                 setResult(Activity.RESULT_OK);
                 finish();
 

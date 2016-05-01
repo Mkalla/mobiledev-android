@@ -135,7 +135,7 @@ public class Step3Fragment extends Fragment implements View.OnClickListener {
                     // Create the File where the photo should go
                     File photoFile = null;
                     try {
-                        photoFile = ((RegisterFragementActivity)getActivity()).createImageFile();
+                        photoFile = ((CreateReportActivity)getActivity()).createImageFile();
                     } catch (IOException ex) {
                         // Error occurred while creating the File
                         Log.i("exceptioncreatefile", ex.toString());
@@ -172,7 +172,7 @@ public class Step3Fragment extends Fragment implements View.OnClickListener {
                 tempImageView.setImageBitmap(imageBitmap);
 
                 witnessImageContainer.addView(tempImageView);
-                ((RegisterFragementActivity)getActivity()).witnessReportImageURIs.add(mImageURI.toString());
+                ((CreateReportActivity)getActivity()).witnessReportImageURIs.add(mImageURI.toString());
             }
         }
     }

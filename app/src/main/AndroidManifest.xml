@@ -41,16 +41,13 @@
             android:name=".GTCActivity"
             android:label="@string/title_activity_gtc" />
         <activity
-            android:name=".CreateReportActivity"
-            android:label="@string/title_activity_create_report" />
-        <activity
             android:name=".PastReportsActivity"
             android:label="@string/title_activity_past_reports" />
         <activity
             android:name=".ReportDetailActivity"
             android:label="@string/title_activity_report_detail" />
         <activity
-            android:name=".RegisterFragementActivity"
+            android:name=".CreateReportActivity"
             android:label="File Report"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

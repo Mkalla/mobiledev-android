@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
@@ -140,7 +139,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
                     // Create the File where the photo should go
                     File photoFile = null;
                     try {
-                        photoFile = ((RegisterFragementActivity)getActivity()).createImageFile();
+                        photoFile = ((CreateReportActivity)getActivity()).createImageFile();
                     } catch (IOException ex) {
                         // Error occurred while creating the File
                         Log.i("exceptioncreatefile", ex.toString());
@@ -177,7 +176,7 @@ public class Step1Fragment extends Fragment implements View.OnClickListener{
                 tempImageView.setImageBitmap(imageBitmap);
 
                 roadImageContainer.addView(tempImageView);
-                ((RegisterFragementActivity)getActivity()).roadReportImageURIs.add(mImageURI.toString());
+                ((CreateReportActivity)getActivity()).roadReportImageURIs.add(mImageURI.toString());
             }
         }
     }
