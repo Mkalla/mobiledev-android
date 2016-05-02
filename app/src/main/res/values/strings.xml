@@ -74,6 +74,17 @@
         <item>\u2022 Make sure that passengers keep away from the carriageway and hard shoulder and children are kept under control – it is best to retreat up the bank, or behind a barrier if this is possible don\'t attempt even simple repairs</item>
     </string-array>
 
+    <string-array name="emergency_react_guide_road_arr">
+        <item>\u2022 Once in a safe place use a mobile phone to call the AA, making sure you can describe your location – look out for the new Driver Location Signs which will help us pinpoint your location and direction of travel, or there are reference numbers on all telephones and marker posts.</item>
+        <item>\u2022 If you have a smart phone you can download the AA App, which uses the GPS function on the phone to find your exact location. With the simple touch of an icon both the call and the location are transferred to the AA Control Centre.</item>
+        <item>\u2022 If you don\'t have a mobile walk to an emergency telephone on your side of the carriageway – never attempt to cross the carriageway. Follow the arrows on the posts at the back of the hard shoulder – the phone is free and connects directly to the police/Highways Agency. Give full details to the police and tell them if you are a vulnerable motorist, such as a woman travelling alone.</item>
+    </string-array>
+
+    <string-array name="emergency_react_guide_notes_arr">
+        <item>\u2022 If you have a smart phone you can download the AA App, which uses the GPS function on the phone to find your exact location. With the simple touch of an icon both the call and the location are transferred to the AA Control Centre.</item>
+        <item>\u2022 If you don\'t have a mobile walk to an emergency telephone on your side of the carriageway – never attempt to cross the carriageway. Follow the arrows on the posts at the back of the hard shoulder – the phone is free and connects directly to the police/Highways Agency. Give full details to the police and tell them if you are a vulnerable motorist, such as a woman travelling alone.</item>
+    </string-array>
+
     <string name="prompt_vehicle_brand">Vehicle Brand</string>
 
     <string name="google_app_id">ornate-reef-125513</string>

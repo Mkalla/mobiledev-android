@@ -22,6 +22,16 @@ public class EmergencyReactionGuide extends AppCompatActivity {
     ArrayList<String> emGuideMotorwayList;
     ListAdapter emGuideMotorwayListAdap;
 
+    ListView emGuideRoadListView;
+    String[] emGuideRoadStringList;
+    ArrayList<String> emGuideRoadList;
+    ListAdapter emGuideRoadListAdap;
+
+    ListView emGuideNotesListView;
+    String[] emGuideNotesStringList;
+    ArrayList<String> emGuideNotesList;
+    ListAdapter emGuideNotesListAdap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +41,21 @@ public class EmergencyReactionGuide extends AppCompatActivity {
         emGuideMotorwayStringList = getResources().getStringArray(R.array.emergency_react_guide_motorway_arr);
         emGuideMotorwayList = new ArrayList<String>();
         emGuideMotorwayList.addAll(Arrays.asList(emGuideMotorwayStringList));
-
         emGuideMotorwayListAdap = new ArrayAdapter<String>(EmergencyReactionGuide.this, R.layout.bullet_list_row, emGuideMotorwayList);
         emGuideMotorwayListView.setAdapter(emGuideMotorwayListAdap);
+
+        emGuideRoadListView = (ListView) findViewById(R.id.emguide_road_list_view);
+        emGuideRoadStringList = getResources().getStringArray(R.array.emergency_react_guide_road_arr);
+        emGuideRoadList = new ArrayList<String>();
+        emGuideRoadList.addAll(Arrays.asList(emGuideRoadStringList));
+        emGuideRoadListAdap = new ArrayAdapter<String>(EmergencyReactionGuide.this, R.layout.bullet_list_row, emGuideRoadList);
+        emGuideRoadListView.setAdapter(emGuideRoadListAdap);
+
+        emGuideNotesListView = (ListView) findViewById(R.id.emguide_notes_list_view);
+        emGuideNotesStringList = getResources().getStringArray(R.array.emergency_react_guide_notes_arr);
+        emGuideNotesList = new ArrayList<String>();
+        emGuideNotesList.addAll(Arrays.asList(emGuideNotesStringList));
+        emGuideNotesListAdap = new ArrayAdapter<String>(EmergencyReactionGuide.this, R.layout.bullet_list_row, emGuideNotesList);
+        emGuideNotesListView.setAdapter(emGuideNotesListAdap);
     }
 }
