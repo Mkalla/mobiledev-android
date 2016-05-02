@@ -119,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         startActivity(new Intent(MainActivity.this, PastReportsActivity.class));
                         break;
                     case 2:
+                        startActivity(new Intent(MainActivity.this, EmergencyReactionGuide.class));
+                        break;
+                    case 3:
                         startActivity(new Intent(MainActivity.this, FAQActivity.class));
                         break;
                     default:

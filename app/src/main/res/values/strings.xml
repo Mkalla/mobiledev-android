@@ -11,6 +11,7 @@
     <string-array name="menu_array">
         <item>Detail Exchange Guide</item>
         <item>Past Reports</item>
+        <item>Emergency Reaction Guide</item>
         <item>FAQs</item>
     </string-array>
     <string name="title_activity_login">Log In</string>
@@ -64,6 +65,15 @@
         <item>Volvo</item>
         <item>other</item>
     </string-array>
+
+    <string-array name="emergency_react_guide_motorway_arr">
+        <item>\u2022 Pull on to the hard shoulder and stop as far to the left as possible with the wheels turned to the left</item>
+        <item>\u2022 Leave your sidelights on and turn on the hazard warning lights get out of the vehicle by the left-hand door and make sure that all your passengers do the same</item>
+        <item>\u2022 Leave animals in the vehicle or in an emergency, keep them under proper control on the verge</item>
+        <item>\u2022 If you have reflective jackets in the vehicle wear them – do not use a warning triangle on the hard shoulder</item>
+        <item>\u2022 Make sure that passengers keep away from the carriageway and hard shoulder and children are kept under control – it is best to retreat up the bank, or behind a barrier if this is possible don\'t attempt even simple repairs</item>
+    </string-array>
+
     <string name="prompt_vehicle_brand">Vehicle Brand</string>
 
     <string name="google_app_id">ornate-reef-125513</string>
