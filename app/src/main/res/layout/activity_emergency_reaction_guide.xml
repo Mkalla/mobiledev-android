@@ -1,90 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".EmergencyReactionGuideActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="hdm.csm.emergency.EmergencyReactionGuide">
-            <TextView
-                android:id="@+id/emguide_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/listSeparatorTextViewStyle"
-                android:text="Emergency Reaction Guide"
-                android:textSize="10pt"
-                android:textStyle="bold"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <RelativeLayout
-            android:id="@+id/emguide_motorway"
-            android:layout_width="match_parent"
+
+</android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        style="?android:buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            style="?android:buttonBarButtonStyle"
+            android:id="@+id/button_previous"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/emguide_title">
-            <TextView
-                android:id="@+id/emguide_motorway_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="5pt"
-                android:text="Have you broken down on the motorway?"
-                android:textSize="7pt"
-                android:textStyle="bold" />
+            android:layout_weight="1"
+            android:text="previous"
+            android:enabled="false"/>
 
-            <ListView
-                android:id="@+id/emguide_motorway_list_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/emguide_motorway_header">
-            </ListView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/emguide_road"
-            android:layout_width="match_parent"
+        <Button
+            style="?android:buttonBarButtonStyle"
+            android:id="@+id/button_next"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/emguide_motorway">
-            <TextView
-                android:id="@+id/emguide_road_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="5pt"
-                android:text="Have you broken down elsewhere?"
-                android:textSize="7pt"
-                android:textStyle="bold" />
+            android:layout_weight="1"
+            android:text="next"/>
 
-            <ListView
-                android:id="@+id/emguide_road_list_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/emguide_road_header">
-            </ListView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/emguide_notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/emguide_road">
-            <TextView
-                android:id="@+id/emguide_notes_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="5pt"
-                android:text="Important Notes:"
-                android:textSize="7pt"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/emguide_notes_list_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/emguide_notes_header">
-            </ListView>
-        </RelativeLayout>
     </LinearLayout>
-</ScrollView>
+
+</RelativeLayout>

@@ -3,4 +3,5 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingTop="5pt"
-    android:paddingBottom="5pt"/>
+    android:paddingBottom="5pt"
+    android:textColor="@color/text_dark"/>
