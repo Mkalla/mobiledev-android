@@ -9,7 +9,6 @@
     <string name="title_activity_report_detail">Report Details</string>
 
     <string-array name="menu_array">
-        <item>Detail Exchange Guide</item>
         <item>Past Reports</item>
         <item>Emergency Reaction Guide</item>
         <item>FAQs</item>

@@ -129,15 +129,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(MainActivity.this, CreateReportActivity.class));
-                        break;
-                    case 1:
                         startActivity(new Intent(MainActivity.this, PastReportsActivity.class));
                         break;
-                    case 2:
+                    case 1:
                         startActivity(new Intent(MainActivity.this, EmergencyReactionGuideActivity.class));
                         break;
-                    case 3:
+                    case 2:
                         startActivity(new Intent(MainActivity.this, FAQActivity.class));
                         break;
                     default:
@@ -153,10 +150,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         geocoder = new Geocoder(this, Locale.getDefault());
 
-        //Geocoder
         if (!internetAvailable(this)) {
-            Toast.makeText(this, "No internet connection. Some features won't work", Toast.LENGTH_SHORT).show();
-            textViewCurrentLocation.setText("No internet connection");
+            Toast.makeText(this, "No internet connection. Some features won't work", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -224,8 +219,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 mGoogleApiClient);
         updateGeoLocation(location);
 
-        latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10000);
         mLocationRequest.setFastestInterval(5000);
@@ -280,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             latLng = new LatLng(latitude, longitude);
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
             List<Address> addresses = null;
 
@@ -309,6 +303,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                             addressFragments));
                 }
 
+            } else {
+                //if no internet display lat long
+                textViewCurrentLocation.setText("Latitude: " + latitude + ", Longitude: " + longitude + System.getProperty("line.separator") + "No internet connection");
             }
         }
     }
