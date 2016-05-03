@@ -1,17 +1,15 @@
 package hdm.csm.emergency;
 
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -53,11 +51,11 @@ public class EmergencyReactionGuideActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                int curr  = mViewPager.getCurrentItem();
+                int curr = mViewPager.getCurrentItem();
 
-                if(curr == 2){
+                if (curr == 2) {
                     nextButton.setEnabled(false);
-                } else if(curr == 0){
+                } else if (curr == 0) {
                     prevButton.setEnabled(false);
                 } else {
                     nextButton.setEnabled(true);
@@ -71,8 +69,8 @@ public class EmergencyReactionGuideActivity extends AppCompatActivity {
             }
         });
 
-        nextButton = (Button)findViewById(R.id.button_next);
-        prevButton = (Button)findViewById(R.id.button_previous);
+        nextButton = (Button) findViewById(R.id.button_next);
+        prevButton = (Button) findViewById(R.id.button_previous);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,15 +87,15 @@ public class EmergencyReactionGuideActivity extends AppCompatActivity {
         });
     }
 
-    public void next(){
-        int curr  = mViewPager.getCurrentItem();
+    public void next() {
+        int curr = mViewPager.getCurrentItem();
         curr++;
         mViewPager.setCurrentItem(curr);
     }
 
 
-    public void previous(){
-        int curr  = mViewPager.getCurrentItem();
+    public void previous() {
+        int curr = mViewPager.getCurrentItem();
         curr--;
         mViewPager.setCurrentItem(curr);
 
@@ -106,16 +104,13 @@ public class EmergencyReactionGuideActivity extends AppCompatActivity {
 
     public static class PlaceholderFragment extends Fragment {
 
+        private static final String ARG_SECTION_NUMBER = "section_number";
+        private final int[] guideArray = {R.array.emergency_react_guide_1, R.array.emergency_react_guide_2, R.array.emergency_react_guide_3};
+        private final int[] guideTitles = {R.string.emergency_react_guide_title_1, R.string.emergency_react_guide_title_2, R.string.emergency_react_guide_title_3};
         ListView emGuideListView;
         String[] emGuideStringList;
         ArrayList<String> emGuideList;
         ListAdapter emGuideListAdap;
-
-        private final int[] guideArray = {R.array.emergency_react_guide_1, R.array.emergency_react_guide_2, R.array.emergency_react_guide_3};
-        private final int[] guideTitles = {R.string.emergency_react_guide_title_1, R.string.emergency_react_guide_title_2, R.string.emergency_react_guide_title_3};
-
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
         }

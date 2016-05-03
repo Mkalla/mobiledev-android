@@ -100,10 +100,6 @@ public class Step2Fragment extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
     @Override
     public void onClick(View v) {
 
@@ -157,5 +153,9 @@ public class Step2Fragment extends Fragment implements View.OnClickListener {
                 ((CreateReportActivity) getActivity()).vehicleReportImageURIs.add(mImageURI.toString());
             }
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 }

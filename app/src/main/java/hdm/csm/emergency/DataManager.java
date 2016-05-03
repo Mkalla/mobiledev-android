@@ -13,15 +13,12 @@ import java.io.ObjectOutputStream;
  */
 public class DataManager {
 
-    Context context;
-    User user;
-
-    String weatherType;
-    String temperature;
-
-
     //Singleton to use same object in every activity
     private static DataManager instance;
+    Context context;
+    User user;
+    String weatherType;
+    String temperature;
 
     private DataManager(Context ctx) {
         this.context = ctx;

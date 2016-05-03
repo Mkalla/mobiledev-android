@@ -14,8 +14,8 @@
         tools:context="hdm.csm.emergency.GTCActivity">
 
         <TextView
+            android:id="@+id/gtcTextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/gtcTextView" />
+            android:layout_height="match_parent" />
     </RelativeLayout>
 </ScrollView>

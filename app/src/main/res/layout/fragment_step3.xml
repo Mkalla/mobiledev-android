@@ -13,8 +13,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".CreateReportActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".CreateReportActivity">
 
         <!--####### ROAD CONDITIONS ####### -->
         <RelativeLayout
@@ -22,34 +22,34 @@
             android:layout_height="wrap_content">
 
             <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="?android:attr/listSeparatorTextViewStyle"
-                android:text="Witness Report"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:text="Witness Report" />
 
             <Button
                 android:id="@+id/button_takePicture"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_marginTop="-10dp"
                 android:text="Add Picture" />
         </RelativeLayout>
 
 
         <ImageView
-            android:layout_below="@id/button_takePicture"
             android:id="@+id/myImageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_takePicture" />
 
         <HorizontalScrollView
-            android:layout_below="@+id/button_takePicture"
+            android:id="@+id/imageScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imageScrollView">
+            android:layout_below="@+id/button_takePicture">
 
             <LinearLayout
                 android:id="@+id/witnessImageContainer"
@@ -80,20 +80,20 @@
         style="?android:buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
         <Button
-            style="?android:buttonBarButtonStyle"
             android:id="@+id/button_cancel"
+            style="?android:buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="cancel" />
 
         <Button
-            style="?android:buttonBarButtonStyle"
             android:id="@+id/button_createReport"
+            style="?android:buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

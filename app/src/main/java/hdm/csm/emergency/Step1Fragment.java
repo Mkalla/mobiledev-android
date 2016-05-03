@@ -94,12 +94,6 @@ public class Step1Fragment extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-
     @Override
     public void onClick(View v) {
 
@@ -153,5 +147,10 @@ public class Step1Fragment extends Fragment implements View.OnClickListener {
                 ((CreateReportActivity) getActivity()).roadReportImageURIs.add(mImageURI.toString());
             }
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 }

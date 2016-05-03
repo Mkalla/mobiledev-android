@@ -10,6 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class User implements Serializable {
+    private static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor prefsEditor;
+    private static Gson gson = new Gson();
+    private static User instance;
     private String title = "";
     private String forename = null;
     private String middlenames = "";
@@ -23,16 +27,9 @@ public class User implements Serializable {
     private String tel = "";
     private String mobile = "";
 
-    private ArrayList<String> paths = new ArrayList<>();
-
-    private static SharedPreferences sharedPreferences;
-    private static SharedPreferences.Editor prefsEditor;
-    private static Gson gson = new Gson();
-
 
     //Singleton to use same object in every activity
-
-    private static User instance;
+    private ArrayList<String> paths = new ArrayList<>();
 
     private User() {
     }
