@@ -85,8 +85,25 @@
         <item>\u2022 If you don\'t have a mobile walk to an emergency telephone on your side of the carriageway – never attempt to cross the carriageway. Follow the arrows on the posts at the back of the hard shoulder – the phone is free and connects directly to the police/Highways Agency. Give full details to the police and tell them if you are a vulnerable motorist, such as a woman travelling alone.</item>
     </string-array>
 
+    <string-array name="detail_xchg_guide_terms_arr">
+        <item>\u2022 A person, other than yourself, is injured</item>
+        <item>\u2022 Damage is caused to another vehicle or to someone else\'s property - including street lamps, signs, bollards etc.</item>
+        <item>\u2022 An animal* has been killed or injured, except in your own vehicle or trailer </item>
+    </string-array>
+
+    <string-array name="detail_xchg_guide_actions_1_arr">
+        <item>\u2022 Stop and remain at the scene for a reasonable period</item>
+        <item>\u2022 Give your vehicle registration number, your name and address, and that of the vehicle owner (if different) to anyone with reasonable grounds for asking for those details</item>
+    </string-array>
+
+    <string-array name="detail_xchg_guide_actions_2_arr">
+        <item>\u2022 Produce your certificate of insurance, if anyone at the scene has reasonable grounds to see it.</item>
+        <item>\u2022 If you do not, you must report the accident at a police station or to a constable as soon as you can and in any case within 24 hours. You\'ll need to produce your certificate of insurance but if you don\'t have it when reporting the accident to the police, you may take it, within seven days of the accident, to the police station you nominate when you report the incident.</item>
+    </string-array>
+
     <string name="prompt_vehicle_brand">Vehicle Brand</string>
 
     <string name="google_app_id">ornate-reef-125513</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_detail_exchange_guide">DetailExchangeGuide</string>
 </resources>

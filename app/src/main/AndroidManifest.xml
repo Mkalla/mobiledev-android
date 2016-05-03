@@ -52,7 +52,10 @@
         <activity
             android:name=".CreateReportActivity"
             android:label="File Report"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DetailExchangeGuide"
+            android:label="Detail Exchange Guide" />
     </application>
 
 </manifest>
