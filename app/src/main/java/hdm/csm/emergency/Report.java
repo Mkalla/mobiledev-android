@@ -10,6 +10,21 @@ import java.util.Date;
  * Created by Manuel on 25/04/16.
  */
 public class Report implements Serializable {
+    private Date date;
+    private Location location;
+    private User user;
+    private String roadReportComment;
+    private ArrayList<String> roadReportImageURIs = new ArrayList<String>();
+    private String vehicleReportComment;
+    private ArrayList<String> vehicleReportImageURIs = new ArrayList<String>();
+    private String witnessReportComment;
+    private ArrayList<String> witnessReportImageURIs = new ArrayList<String>();
+    private String weatherType = "";
+    private String temperature = "";
+
+    public Report() {
+    }
+
     public Date getDate() {
         return date;
     }
@@ -96,26 +111,6 @@ public class Report implements Serializable {
 
     public void setTemperature(String temperature) {
         this.temperature = temperature;
-    }
-
-
-    private Date date;
-    private Location location;
-    private User user;
-
-    private String roadReportComment;
-    private ArrayList<String> roadReportImageURIs = new ArrayList<String>();
-
-    private String vehicleReportComment;
-    private ArrayList<String> vehicleReportImageURIs = new ArrayList<String>();
-
-    private String witnessReportComment;
-    private ArrayList<String> witnessReportImageURIs = new ArrayList<String>();
-
-    private String weatherType = "";
-    private String temperature = "";
-
-    public Report() {
     }
 
 }

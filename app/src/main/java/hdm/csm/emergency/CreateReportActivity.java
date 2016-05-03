@@ -27,6 +27,16 @@ public class CreateReportActivity
         Step3Fragment.OnFragmentInteractionListener,
         View.OnClickListener {
 
+    Report report;
+    DataManager dataManager;
+    Button createReportButton;
+    Button cancelButton;
+    Step1Fragment step1Fragment;
+    Step2Fragment step2Fragment;
+    Step3Fragment step3Fragment;
+    ArrayList<String> roadReportImageURIs = new ArrayList<String>();
+    ArrayList<String> vehicleReportImageURIs = new ArrayList<String>();
+    ArrayList<String> witnessReportImageURIs = new ArrayList<String>();
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -36,26 +46,10 @@ public class CreateReportActivity
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
-
-    Report report;
-    DataManager dataManager;
-
-    Button createReportButton;
-    Button cancelButton;
-
-    Step1Fragment step1Fragment;
-    Step2Fragment step2Fragment;
-    Step3Fragment step3Fragment;
-
-    ArrayList<String> roadReportImageURIs = new ArrayList<String>();
-    ArrayList<String> vehicleReportImageURIs = new ArrayList<String>();
-    ArrayList<String> witnessReportImageURIs = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,52 +86,6 @@ public class CreateReportActivity
 
     public void onFragmentInteraction(Uri uri) {
         //you can leave it empty
-    }
-
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            switch (position) {
-                case 0:
-                    return step1Fragment;
-                case 1:
-                    return step2Fragment;
-                case 2:
-                    return step3Fragment;
-                default:
-                    return step1Fragment;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Road Conditions";
-                case 1:
-                    return "Vehicle Report";
-                case 2:
-                    return "Witness Report";
-            }
-            return null;
-        }
     }
 
     @Override
@@ -196,5 +144,50 @@ public class CreateReportActivity
         //Createfile and save
         String filename = "report_" + System.currentTimeMillis();
         dataManager.saveReport(filename, report);
+    }
+
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            switch (position) {
+                case 0:
+                    return step1Fragment;
+                case 1:
+                    return step2Fragment;
+                case 2:
+                    return step3Fragment;
+                default:
+                    return step1Fragment;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Road Conditions";
+                case 1:
+                    return "Vehicle Report";
+                case 2:
+                    return "Witness Report";
+            }
+            return null;
+        }
     }
 }

@@ -35,9 +35,6 @@
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity
-            android:name=".EmergencyReactionGuide"
-            android:label="@string/title_activity_faq" />
-        <activity
             android:name=".FAQActivity"
             android:label="@string/title_activity_faq" />
         <activity
@@ -56,6 +53,10 @@
         <activity
             android:name=".DetailExchangeGuide"
             android:label="Detail Exchange Guide" />
+        <activity
+            android:name=".EmergencyReactionGuideActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -77,6 +77,22 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     String key;
     String reqUrl;
 
+    public static boolean internetAvailable(Context context) {
+        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isConnected = false;
+        if (connectivity != null) {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        isConnected = true;
+                    }
+                }
+            }
+        }
+        return isConnected;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -119,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         startActivity(new Intent(MainActivity.this, PastReportsActivity.class));
                         break;
                     case 2:
-                        startActivity(new Intent(MainActivity.this, EmergencyReactionGuide.class));
+                        startActivity(new Intent(MainActivity.this, EmergencyReactionGuideActivity.class));
                         break;
                     case 3:
                         startActivity(new Intent(MainActivity.this, FAQActivity.class));
@@ -137,29 +153,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         geocoder = new Geocoder(this, Locale.getDefault());
 
-        //Geocoder
-        if(!internetAvailable(this)) {
-            Toast.makeText(this, "No internet connection. Some features won't work", Toast.LENGTH_SHORT).show();
-            textViewCurrentLocation.setText("No internet connection");
+        if (!internetAvailable(this)) {
+            Toast.makeText(this, "No internet connection. Some features won't work", Toast.LENGTH_LONG).show();
         }
     }
 
-    public static boolean internetAvailable(Context context){
-        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        boolean isConnected = false;
-        if (connectivity != null) {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null) {
-                for (int i = 0; i < info.length; i++) {
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        isConnected = true;
-                    }
-                }
-            }
-        }
-        return isConnected;
-    }
-    
     @Override
     protected void onStart() {
         super.onStart();
@@ -224,8 +222,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 mGoogleApiClient);
         updateGeoLocation(location);
 
-        latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10000);
         mLocationRequest.setFastestInterval(5000);
@@ -280,10 +276,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             latLng = new LatLng(latitude, longitude);
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
             List<Address> addresses = null;
 
-            if(internetAvailable(this)) {
+            if (internetAvailable(this)) {
                 try {
                     addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                 } catch (IOException ioException) {
@@ -309,6 +306,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                             addressFragments));
                 }
 
+            } else {
+                //if no internet display lat long
+                textViewCurrentLocation.setText("Latitude: " + latitude + ", Longitude: " + longitude + System.getProperty("line.separator") + "No internet connection");
             }
         }
     }

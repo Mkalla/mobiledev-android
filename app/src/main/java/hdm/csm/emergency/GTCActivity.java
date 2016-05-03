@@ -1,15 +1,11 @@
 package hdm.csm.emergency;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 
 public class GTCActivity extends AppCompatActivity {
 
@@ -35,9 +31,9 @@ public class GTCActivity extends AppCompatActivity {
 
 
         //Create a file if it doesn't exist yet (obvisouly this would make no sense in a real project. Just for demo purpose.)
-        if(termsString == null) {
+        if (termsString == null) {
             createFile();
-        } else{
+        } else {
             gtcTextView.setText(termsString);
         }
 

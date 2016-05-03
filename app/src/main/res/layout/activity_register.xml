@@ -2,10 +2,10 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="hdm.csm.emergency.RegisterActivity"
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+    android:layout_height="match_parent"
+    tools:context="hdm.csm.emergency.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,11 +17,11 @@
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
+            style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="?android:attr/listSeparatorTextViewStyle"
-            android:text="Personal Information"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:text="Personal Information" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -42,8 +42,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/forename"
@@ -57,8 +57,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/middlenames"
@@ -92,19 +92,19 @@
                 android:id="@+id/birthday"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:focusable="false"
                 android:hint="Date of Birth"
                 android:inputType="date"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:focusable="false" />
+                android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="?android:attr/listSeparatorTextViewStyle"
-            android:text="Contact Details"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:text="Contact Details" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -185,8 +185,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/tel"
@@ -200,8 +200,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/mobile"
@@ -214,12 +214,12 @@
         </LinearLayout>
 
         <TextView
+            style="?android:attr/listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="?android:attr/listSeparatorTextViewStyle"
-            android:text="Vehicle Information"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp" />
+            android:text="Vehicle Information" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -228,44 +228,44 @@
 
             <LinearLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
                 android:layout_height="wrap_content"
+                android:layout_weight=".5"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
                     android:paddingLeft="3dp"
-                    android:text="Vehicle Type" />
+                    android:text="Vehicle Type"
+                    android:textSize="12dp" />
 
                 <Spinner
                     android:id="@+id/vehicleType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:prompt="@string/prompt_vehicle_type"
-                    android:entries="@array/vehicle_type_array" />
+                    android:entries="@array/vehicle_type_array"
+                    android:prompt="@string/prompt_vehicle_type" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
                 android:layout_height="wrap_content"
+                android:layout_weight=".5"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
                     android:paddingLeft="3dp"
-                    android:text="Vehicle Brand" />
+                    android:text="Vehicle Brand"
+                    android:textSize="12dp" />
 
                 <Spinner
                     android:id="@+id/vehicleBrand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:prompt="@string/prompt_vehicle_brand"
-                    android:entries="@array/vehicle_brand_array" />
+                    android:entries="@array/vehicle_brand_array"
+                    android:prompt="@string/prompt_vehicle_brand" />
             </LinearLayout>
 
         </LinearLayout>
@@ -277,8 +277,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/vehicleModel"
@@ -292,8 +292,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/vehicleEngine"
@@ -313,8 +313,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/vehicleAge"
@@ -328,8 +328,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dip"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight=".5">
 
                 <EditText
                     android:id="@+id/vehicleOwned"

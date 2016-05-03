@@ -29,10 +29,8 @@ public class Step3Fragment extends Fragment implements View.OnClickListener {
     LinearLayout witnessImageContainer;
 
     Uri mImageURI;
-
-    private OnFragmentInteractionListener mListener;
-
     EditText etWitnessReportComment;
+    private OnFragmentInteractionListener mListener;
 
     public Step3Fragment() {
         // Required empty public constructor
@@ -91,11 +89,6 @@ public class Step3Fragment extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
     @Override
     public void onClick(View v) {
 
@@ -149,5 +142,10 @@ public class Step3Fragment extends Fragment implements View.OnClickListener {
                 ((CreateReportActivity) getActivity()).witnessReportImageURIs.add(mImageURI.toString());
             }
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 }

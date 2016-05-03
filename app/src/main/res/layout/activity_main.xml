@@ -15,52 +15,52 @@
         android:id="@+id/textView_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
         android:text="Name"
-        android:textSize="24dp"
-        android:paddingLeft="16dp" />
+        android:textSize="24dp" />
 
     <TextView
-        android:layout_below="@id/textView_Name"
         android:id="@+id/textView_CurrentLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textView_Name"
+        android:paddingLeft="16dp"
         android:text=""
-        android:textSize="16dp"
-        android:paddingLeft="16dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/weatherTypeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_CurrentLocation"
-        android:text=""
-        android:paddingLeft="16dp" />
+        android:paddingLeft="16dp"
+        android:text="" />
 
     <TextView
         android:id="@+id/weatherTempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:layout_below="@id/weatherTypeTextView"
-        android:paddingLeft="16dp" />
+        android:paddingLeft="16dp"
+        android:text="" />
 
     <ListView
-        android:layout_below="@+id/map"
         android:id="@+id/listMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/map"
         android:entries="@array/menu_array"></ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:tint="@color/white"
-        android:src="@android:drawable/ic_input_add"
-        android:layout_alignParentRight="true"
         android:layout_alignBottom="@id/map"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="-30dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/white" />
 
 </RelativeLayout>
